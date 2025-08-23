@@ -1,0 +1,1469 @@
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            Placify Dashboard
+        </div>
+        <div class="header-actions">
+            <div class="user-profile" onclick="toggleProfile()">
+                <i class="fas fa-user-circle"></i>
+                <span>John Student</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('training')">
+                    <i class="fas fa-graduation-cap"></i>
+                    Training Programs
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('placement')">
+                    <i class="fas fa-briefcase"></i>
+                    Placement Resources
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('chat')">
+                    <i class="fas fa-comments"></i>
+                    Student-Employer Chat
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('ai-tools')">
+                    <i class="fas fa-robot"></i>
+                    AI Resume Scanner
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('interview')">
+                    <i class="fas fa-microphone"></i>
+                    Interview Practice
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('jobs')">
+                    <i class="fas fa-search"></i>
+                    Job Board
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section active fade-in">
+                <h1 class="section-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Welcome to Your Dashboard
+                </h1>
+                
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="coursesCompleted">12</div>
+                        <div class="stat-label">Courses Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="skillsLearned">25</div>
+                        <div class="stat-label">Skills Learned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="interviewsPracticed">8</div>
+                        <div class="stat-label">Interviews Practiced</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="jobsApplied">15</div>
+                        <div class="stat-label">Jobs Applied</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Recent Activity</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="activity-list">
+                            <p><i class="fas fa-check-circle" style="color: #28a745;"></i> Completed "JavaScript Fundamentals" course</p>
+                            <p><i class="fas fa-upload" style="color: #007bff;"></i> Updated resume with new skills</p>
+                            <p><i class="fas fa-video" style="color: #ffc107;"></i> Practiced mock interview session</p>
+                            <p><i class="fas fa-paper-plane" style="color: #17a2b8;"></i> Applied to Frontend Developer position</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Upcoming Events</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="events-list">
+                            <p><strong>Tomorrow:</strong> Virtual Job Fair - Tech Companies</p>
+                            <p><strong>Dec 28:</strong> React.js Advanced Workshop</p>
+                            <p><strong>Jan 2:</strong> Interview with ABC Corp</p>
+                            <p><strong>Jan 5:</strong> Career Counseling Session</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Programs Section -->
+            <div id="training" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Training Programs
+                    </h2>
+                    <p>Enhance your skills with our comprehensive training courses</p>
+                    
+                    <div class="course-grid">
+                        <div class="course-card">
+                            <h4 class="course-title">Full Stack Web Development</h4>
+                            <p class="course-meta">Duration: 12 weeks | Instructor: Sarah Johnson</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <p>Progress: 75% Complete</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="startCourse('fullstack')">Continue Learning</button>
+                        </div>
+                        
+                        <div class="course-card">
+                            <h4 class="course-title">Data Science & Analytics</h4>
+                            <p class="course-meta">Duration: 16 weeks | Instructor: Dr. Michael Chen</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                            <p>Progress: 30% Complete</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="startCourse('datascience')">Continue Learning</button>
+                        </div>
+                        
+                        <div class="course-card">
+                            <h4 class="course-title">Digital Marketing</h4>
+                            <p class="course-meta">Duration: 8 weeks | Instructor: Emma Wilson</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <p>Progress: 90% Complete</p>
+                            <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="startCourse('marketing')">Complete Course</button>
+                        </div>
+                        
+                        <div class="course-card">
+                            <h4 class="course-title">Cybersecurity Fundamentals</h4>
+                            <p class="course-meta">Duration: 10 weeks | Instructor: Alex Rodriguez</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p>Not Started</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem;" onclick="startCourse('cybersecurity')">Start Course</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placement Resources Section -->
+            <div id="placement" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Placement Resources
+                    </h2>
+                    <p>Everything you need for successful job placement</p>
+                    
+                    <div class="resource-list">
+                        <div class="resource-item" onclick="openResource('resume-guide')">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Resume Building Guide</h4>
+                                <p>Complete guide to creating professional resumes</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="resource-item" onclick="openResource('interview-tips')">
+                            <div class="resource-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4>Interview Tips & Strategies</h4>
+                                <p>Master the art of successful interviews</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="resource-item" onclick="openResource('company-profiles')">
+                            <div class="resource-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <h4>Company Profiles</h4>
+                                <p>Detailed information about partner companies</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="resource-item" onclick="openResource('salary-guide')">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4>Salary Negotiation Guide</h4>
+                                <p>Learn how to negotiate competitive salaries</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="resource-item" onclick="openResource('networking')">
+                            <div class="resource-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4>Professional Networking</h4>
+                                <p>Build valuable professional connections</p>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div id="chat" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-comments"></i>
+                        Student-Employer Chat
+                    </h2>
+                    
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <i class="fas fa-circle" style="color: #28a745; margin-right: 0.5rem;"></i>
+                            Live Chat with HR Manager - TechCorp Solutions
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">
+                                <strong>HR Manager:</strong> Hello! I've reviewed your profile and I'm impressed with your skills. Do you have any questions about our company?
+                            </div>
+                            <div class="message sent">
+                                <strong>You:</strong> Thank you! I'm very interested in the Frontend Developer position. Could you tell me more about the team structure?
+                            </div>
+                            <div class="message received">
+                                <strong>HR Manager:</strong> Of course! We have a collaborative team of 8 developers working on various projects. Would you like to schedule a formal interview?
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                            <button onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3>Recent Conversations</h3>
+                        <div class="resource-list">
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h4>DataFlow Analytics</h4>
+                                    <p>Last message: "We'd like to schedule an interview..."</p>
+                                </div>
+                                <span style="color: #28a745; font-size: 0.8rem;">Active</span>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h4>StartupXYZ</h4>
+                                    <p>Last message: "Thank you for your interest..."</p>
+                                </div>
+                                <span style="color: #6c757d; font-size: 0.8rem;">2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Tools Section -->
+            <div id="ai-tools" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-robot"></i>
+                        AI Resume Scanner & Tools
+                    </h2>
+                    
+                    <div class="ai-tool">
+                        <div class="ai-tool-header">
+                            <div class="ai-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Smart Resume Analysis</h3>
+                                <p>AI-powered resume scanning and optimization</p>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" style="margin-bottom: 1rem;">
+                            <button class="btn btn-primary" onclick="analyzeResume()">
+                                <i class="fas fa-brain"></i>
+                                Analyze Resume
+                            </button>
+                        </div>
+                        <div id="resumeResults" style="display: none;">
+                            <h4>Analysis Results:</h4>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                                <p><strong>Overall Score:</strong> <span style="color: #28a745; font-weight: bold;">85/100</span></p>
+                                <p><strong>Strengths:</strong> Strong technical skills, relevant experience</p>
+                                <p><strong>Suggestions:</strong> Add more quantifiable achievements, improve formatting</p>
+                                <p><strong>ATS Compatibility:</strong> <span style="color: #28a745;">Excellent</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-tool">
+                        <div class="ai-tool-header">
+                            <div class="ai-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h3>Job Matching Engine</h3>
+                                <p>AI-powered job recommendations based on your profile</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="findMatches()">
+                            <i class="fas fa-magic"></i>
+                            Find Job Matches
+                        </button>
+                        <div id="jobMatches" style="display: none; margin-top: 1rem;">
+                            <h4>Top Job Matches:</h4>
+                            <div class="job-listing">
+                                <div class="job-header">
+                                    <div>
+                                        <div class="job-title">Senior Frontend Developer</div>
+                                        <div class="company-name">TechCorp Solutions</div>
+                                    </div>
+                                    <div style="color: #28a745; font-weight: bold;">95% Match</div>
+                                </div>
+                                <div class="job-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                                    <span><i class="fas fa-dollar-sign"></i> $80k - $100k</span>
+                                    <span><i class="fas fa-clock"></i> Full-time</span>
+                                </div>
+                                <div class="job-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-tool">
+                        <div class="ai-tool-header">
+                            <div class="ai-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h3>Skill Gap Analysis</h3>
+                                <p>Identify skill gaps and get personalized learning recommendations</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="analyzeSkills()">
+                            <i class="fas fa-analytics"></i>
+                            Analyze Skills
+                        </button>
+                        <div id="skillAnalysis" style="display: none; margin-top: 1rem;">
+                            <h4>Skill Analysis Results:</h4>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px;">
+                                <div style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>JavaScript</span>
+                                        <span style="color: #28a745;">Advanced</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>React.js</span>
+                                        <span style="color: #ffc107;">Intermediate</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Node.js</span>
+                                        <span style="color: #dc3545;">Beginner</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                                <p><strong>Recommendation:</strong> Consider taking our Node.js advanced course to improve backend skills.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interview Practice Section -->
+            <div id="interview" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-microphone"></i>
+                        Interview Practice Tools
+                    </h2>
+                    
+                    <div class="interview-simulator">
+                        <h3>AI-Powered Mock Interview</h3>
+                        <div class="camera-view">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="interview-controls">
+                            <button class="btn btn-primary" onclick="startInterview()">
+                                <i class="fas fa-play"></i>
+                                Start Interview
+                            </button>
+                            <button class="btn btn-secondary" onclick="pauseInterview()">
+                                <i class="fas fa-pause"></i>
+                                Pause
+                            </button>
+                            <button class="btn" style="background: #dc3545; color: white;" onclick="stopInterview()">
+                                <i class="fas fa-stop"></i>
+                                Stop
+                            </button>
+                        </div>
+                        <div id="interviewFeedback" style="display: none;">
+                            <h4>Interview Feedback:</h4>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: left;">
+                                <p><strong>Communication:</strong> <span style="color: #28a745;">Excellent</span> - Clear and confident responses</p>
+                                <p><strong>Technical Knowledge:</strong> <span style="color: #ffc107;">Good</span> - Could improve on advanced concepts</p>
+                                <p><strong>Body Language:</strong> <span style="color: #28a745;">Very Good</span> - Professional posture</p>
+                                <p><strong>Overall Score:</strong> <span style="color: #28a745; font-weight: bold;">82/100</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3>Practice Questions by Category</h3>
+                        <div class="course-grid">
+                            <div class="course-card">
+                                <h4>Technical Questions</h4>
+                                <p>Programming, algorithms, system design</p>
+                                <button class="btn btn-primary" onclick="startQuestions('technical')">Start Practice</button>
+                            </div>
+                            <div class="course-card">
+                                <h4>Behavioral Questions</h4>
+                                <p>Teamwork, leadership, problem-solving</p>
+                                <button class="btn btn-primary" onclick="startQuestions('behavioral')">Start Practice</button>
+                            </div>
+                            <div class="course-card">
+                                <h4>Company Specific</h4>
+                                <p>Culture fit, company knowledge</p>
+                                <button class="btn btn-primary" onclick="startQuestions('company')">Start Practice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Section -->
+            <div id="jobs" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-search"></i>
+                        Job Board
+                    </h2>
+                    
+                    <div style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center;">
+                        <input type="text" placeholder="Search jobs..." style="flex: 1; padding: 0.8rem; border: 1px solid #e9ecef; border-radius: 25px;">
+                        <select style="padding: 0.8rem; border: 1px solid #e9ecef; border-radius: 25px;">
+                            <option>All Categories</option>
+                            <option>Software Development</option>
+                            <option>Data Science</option>
+                            <option>Design</option>
+                            <option>Marketing</option>
+                        </select>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Search
+                        </button>
+                    </div>
+                    
+                    <div class="job-listing">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Full Stack Developer</div>
+                                <div class="company-name">InnovateTech Solutions</div>
+                            </div>
+                            <button class="btn btn-primary" onclick="applyJob('fullstack')">Apply Now</button>
+                        </div>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> San Francisco, CA</span>
+                            <span><i class="fas fa-dollar-sign"></i> $90k - $120k</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                            <span><i class="fas fa-calendar"></i> Posted 2 days ago</span>
+                        </div>
+                        <p>We're looking for a talented Full Stack Developer to join our growing team. You'll work on cutting-edge projects using modern technologies.</p>
+                        <div class="job-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                    </div>
+                    
+                    <div class="job-listing">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Data Scientist</div>
+                                <div class="company-name">DataFlow Analytics</div>
+                            </div>
+                            <button class="btn btn-primary" onclick="applyJob('datascientist')">Apply Now</button>
+                        </div>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                            <span><i class="fas fa-dollar-sign"></i> $100k - $130k</span>
+                            <span class="fas fa-clock"></i> Full-time</span>
+                            <span><i class="fas fa-calendar"></i> Posted 1 week ago</span>
+                        </div>
+                        <p>Join our data science team to work on machine learning projects that drive business insights and innovation.</p>
+                        <div class="job-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">TensorFlow</span>
+                        </div>
+                    </div>
+                    
+                    <div class="job-listing">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">UI/UX Designer</div>
+                                <div class="company-name">Creative Studio Pro</div>
+                            </div>
+                            <button class="btn btn-primary" onclick="applyJob('designer')">Apply Now</button>
+                        </div>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> New York, NY</span>
+                            <span><i class="fas fa-dollar-sign"></i> $70k - $95k</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                            <span><i class="fas fa-calendar"></i> Posted 3 days ago</span>
+                        </div>
+                        <p>We're seeking a creative UI/UX Designer to create intuitive and beautiful user experiences for our digital products.</p>
+                        <div class="job-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Adobe Creative Suite</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">User Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile" class="section fade-in" style="display: none;">
+                <div class="feature-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        My Profile
+                    </h2>
+                    
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Personal Information</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                            </div>
+                            <form>
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Full Name</label>
+                                    <input type="text" value="John Student" style="width: 100%; padding: 0.8rem; border: 1px solid #e9ecef; border-radius: 5px;">
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email</label>
+                                    <input type="email" value="john.student@email.com" style="width: 100%; padding: 0.8rem; border: 1px solid #e9ecef; border-radius: 5px;">
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Phone</label>
+                                    <input type="tel" value="+1 (555) 123-4567" style="width: 100%; padding: 0.8rem; border: 1px solid #e9ecef; border-radius: 5px;">
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+                            </form>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Skills & Interests</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Technical Skills</label>
+                                    <div class="job-tags">
+                                        <span class="tag">JavaScript</span>
+                                        <span class="tag">React</span>
+                                        <span class="tag">Python</span>
+                                        <span class="tag">SQL</span>
+                                        <span class="tag">Git</span>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Career Interests</label>
+                                    <div class="job-tags">
+                                        <span class="tag">Web Development</span>
+                                        <span class="tag">Data Science</span>
+                                        <span class="tag">Machine Learning</span>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="editSkills()">Edit Skills</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Global variables
+        let currentSection = 'dashboard';
+        let interviewActive = false;
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName).style.display = 'block';
+            
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+            
+            currentSection = sectionName;
+        }
+
+        // Profile functions
+        function toggleProfile() {
+            alert('Profile menu - Logout, Settings, etc.');
+        }
+
+        function updateProfile() {
+            alert('Profile updated successfully!');
+        }
+
+        function editSkills() {
+            alert('Skills editor opened - Add/remove skills');
+        }
+
+        // Training functions
+        function startCourse(courseName) {
+            const courses = {
+                'fullstack': 'Full Stack Web Development',
+                'datascience': 'Data Science & Analytics',
+                'marketing': 'Digital Marketing',
+                'cybersecurity': 'Cybersecurity Fundamentals'
+            };
+            alert(`Starting ${courses[courseName]} course...`);
+        }
+
+        // Placement resources functions
+        function openResource(resourceType) {
+            const resources = {
+                'resume-guide': 'Resume Building Guide',
+                'interview-tips': 'Interview Tips & Strategies',
+                'company-profiles': 'Company Profiles',
+                'salary-guide': 'Salary Negotiation Guide',
+                'networking': 'Professional Networking'
+            };
+            alert(`Opening ${resources[resourceType]}...`);
+        }
+
+        // Chat functions
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const messages = document.getElementById('chatMessages');
+            
+            if (input.value.trim()) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `<strong>You:</strong> ${input.value}`;
+                messages.appendChild(messageDiv);
+                
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+                
+                // Simulate response after 2 seconds
+                setTimeout(() => {
+                    const responseDiv = document.createElement('div');
+                    responseDiv.className = 'message received';
+                    responseDiv.innerHTML = `<strong>HR Manager:</strong> Thank you for your message. I'll get back to you shortly.`;
+                    messages.appendChild(responseDiv);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 2000);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // AI Tools functions
+        function analyzeResume() {
+            const fileInput = document.getElementById('resumeUpload');
+            if (!fileInput.files.length) {
+                alert('Please select a resume file first.');
+                return;
+            }
+            
+            // Simulate analysis
+            setTimeout(() => {
+                document.getElementById('resumeResults').style.display = 'block';
+                alert('Resume analysis completed!');
+            }, 2000);
+        }
+
+        function findMatches() {
+            // Simulate job matching
+            setTimeout(() => {
+                document.getElementById('jobMatches').style.display = 'block';
+                alert('Job matches found based on your profile!');
+            }, 1500);
+        }
+
+        function analyzeSkills() {
+            // Simulate skill analysis
+            setTimeout(() => {
+                document.getElementById('skillAnalysis').style.display = 'block';
+                alert('Skill analysis completed!');
+            }, 1500);
+        }
+
+        // Interview functions
+        function startInterview() {
+            interviewActive = true;
+            alert('Mock interview started! Answer the questions naturally.');
+            
+            // Simulate interview completion after 10 seconds
+            setTimeout(() => {
+                document.getElementById('interviewFeedback').style.display = 'block';
+                alert('Interview completed! Check your feedback below.');
+                interviewActive = false;
+            }, 10000);
+        }
+
+        function pauseInterview() {
+            if (interviewActive) {
+                alert('Interview paused. Click resume to continue.');
+            }
+        }
+
+        function stopInterview() {
+            if (interviewActive) {
+                interviewActive = false;
+                alert('Interview stopped.');
+            }
+        }
+
+        function startQuestions(category) {
+            const categories = {
+                'technical': 'Technical Questions',
+                'behavioral': 'Behavioral Questions',
+                'company': 'Company Specific Questions'
+            };
+            alert(`Starting ${categories[category]} practice session...`);
+        }
+
+        // Job functions
+        function applyJob(jobId) {
+            const jobs = {
+                'fullstack': 'Full Stack Developer',
+                'datascientist': 'Data Scientist',
+                'designer': 'UI/UX Designer'
+            };
+            alert(`Application submitted for ${jobs[jobId]} position!`);
+        }
+
+        // Animate stats on page load
+        function animateStats() {
+            const stats = [
+                { element: 'coursesCompleted', target: 12 },
+                { element: 'skillsLearned', target: 25 },
+                { element: 'interviewsPracticed', target: 8 },
+                { element: 'jobsApplied', target: 15 }
+            ];
+
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.element);
+                let current = 0;
+                const increment = stat.target / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= stat.target) {
+                        current = stat.target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current);
+                }, 50);
+            });
+        }
+
+        // Initialize dashboard
+        window.addEventListener('load', () => {
+            animateStats();
+            
+            // Welcome message
+            setTimeout(() => {
+                alert('Welcome to Placify Dashboard! Explore all features to enhance your career prospects.');
+            }, 1000);
+        });
+
+        // Smooth transitions for sections
+        function addFadeEffect() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+            });
+        }
+
+        // Add loading states for interactive elements
+        function showLoading(buttonElement) {
+            const originalText = buttonElement.innerHTML;
+            buttonElement.innerHTML = '<span class="loading"></span> Loading...';
+            buttonElement.disabled = true;
+            
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;
+                buttonElement.disabled = false;
+            }, 2000);
+        }
+
+        // Real-time notifications
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#28a745' : '#007bff'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 1001;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        addFadeEffect();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placify Dashboard - Training & Placement Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #ffc107;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Container */
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem 0;
+        }
+
+        .nav-item {
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #ffc107;
+        }
+
+        .nav-item i {
+            width: 20px;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Training Programs */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .course-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Placement Resources */
+        .resource-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffc107, #ff8c00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* AI Tools */
+        .ai-tool {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ai-tool:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .ai-tool-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ai-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .message.sent {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.received {
+            background: white;
+            border: 1px solid #e9ecef;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
+            background: white;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #e9ecef;
+            border-radius: 25px;
+            margin-right: 0.5rem;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffc107, #ff8c00);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Interview Practice */
+        .interview-simulator {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .camera-view {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .interview-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Job Board */
+        .job-listing {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .job-listing:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-name {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #495057;
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
