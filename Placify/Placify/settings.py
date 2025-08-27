@@ -123,9 +123,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CrewAI and OpenAI Configuration
-
-
 # Session configuration for storing resume data
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 3600  # 1 hour

@@ -30,10 +30,10 @@ def login_page(request):
 
         if user is None:
              messages.info(request, 'Invalid Data')
-             return redirect('/home/')
+             return redirect('/login/')
         else :
             login(request, user)
-            return redirect('/home/')
+            return redirect('/')
 
     return render(request, 'login.html')
     
