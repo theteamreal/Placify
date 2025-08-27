@@ -33,7 +33,7 @@ def login_page(request):
              return redirect('/home/')
         else :
             login(request, user)
-            return redirect('/main/')
+            return redirect('/home/')
 
     return render(request, 'login.html')
     
