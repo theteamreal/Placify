@@ -1,1762 +1,796 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placify - Your Gateway to Career Success</title>
-    
-    <!-- Meta Tags -->
-    <meta name="description" content="Placify - Complete training and placement platform bridging students and recruiters with AI-powered tools">
-    <meta name="keywords" content="training, placement, jobs, students, recruiters, AI resume scanner, interview practice">
-    <meta name="author" content="Team Real">
-    
-    <!-- External CSS Libraries -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    
-    <!-- Base CSS from template -->
-    <style>
-        /* CSS Variables */
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --info-color: #06b6d4;
-            --light-color: #f8fafc;
-            --dark-color: #0f172a;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
-            --white: #ffffff;
-            
-            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --gradient-hero: linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #1e1b4b 100%);
-            
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
-            
-            --border-radius: 12px;
-            --border-radius-sm: 6px;
-            --border-radius-lg: 16px;
-            --border-radius-xl: 24px;
-            
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.3);
-            
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+{% extends 'base.html' %}
+
+{% block start %}
+<style>
+    /* Dashboard Specific Styles */
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        margin-top: 7rem;
+    }
+
+    .dashboard-header {
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .dashboard-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(139, 92, 246, 0.3);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-change {
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .stat-change.positive {
+        color: #10b981;
+    }
+
+    .stat-change.negative {
+        color: #ef4444;
+    }
+
+    /* Main Dashboard Content */
+    .dashboard-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .main-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .side-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* Card Component */
+    .card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        border-color: rgba(139, 92, 246, 0.2);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .card-title i {
+        color: #8b5cf6;
+    }
+
+    .card-action {
+        color: #8b5cf6;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .card-action:hover {
+        color: #a855f7;
+    }
+
+    /* Recent Applications */
+    .application-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(139, 92, 246, 0.05);
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+    }
+
+    .application-item:hover {
+        background: rgba(139, 92, 246, 0.05);
+        border-color: rgba(139, 92, 246, 0.15);
+    }
+
+    .application-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    .application-details {
+        flex: 1;
+    }
+
+    .application-title {
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.25rem;
+    }
+
+    .application-company {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.25rem;
+    }
+
+    .application-status {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    .status-applied {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .status-interview {
+        background: rgba(245, 158, 11, 0.1);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .status-accepted {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .status-rejected {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .action-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.5rem 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        border-radius: 12px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .action-btn:hover {
+        background: rgba(139, 92, 246, 0.1);
+        border-color: rgba(139, 92, 246, 0.3);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .action-btn i {
+        font-size: 1.5rem;
+        color: #8b5cf6;
+    }
+
+    /* Progress Chart */
+    .progress-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-header {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .progress-label {
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .progress-value {
+        font-size: 0.9rem;
+        color: #8b5cf6;
+        font-weight: 600;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        border-radius: 4px;
+        transition: width 0.6s ease;
+    }
+
+    /* Upcoming Events */
+    .event-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(139, 92, 246, 0.05);
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+    }
+
+    .event-item:hover {
+        background: rgba(139, 92, 246, 0.05);
+        border-color: rgba(139, 92, 246, 0.15);
+    }
+
+    .event-date {
+        text-align: center;
+        padding: 0.5rem;
+        background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        border-radius: 8px;
+        min-width: 60px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    .event-details h4 {
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.25rem;
+    }
+
+    .event-details p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.25rem;
+    }
+
+    .event-time {
+        font-size: 0.75rem;
+        color: #8b5cf6;
+        font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .dashboard-content {
+            grid-template-columns: 1fr;
         }
-
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-family);
-            line-height: 1.6;
-            color: var(--gray-800);
-            background: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(30, 64, 175, 0.95);
-            backdrop-filter: blur(20px);
-            transition: var(--transition);
-        }
-
-        .header.scrolled {
-            background: rgba(30, 64, 175, 0.98);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .navbar {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .logo i {
-            color: var(--accent-color);
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-            padding: 0.75rem 1.25rem;
-            border-radius: var(--border-radius-xl);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            transform: translateY(-1px);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.875rem 2rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: none;
-            border-radius: var(--border-radius-xl);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            font-family: inherit;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: var(--gradient-accent);
-            color: var(--white);
-            box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-        }
-
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-hero);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            animation: gridFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes gridFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(0.5deg); }
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-text {
-            color: var(--white);
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .hero-stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 0.25rem;
-        }
-
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .platform-preview {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .platform-preview::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(90deg, var(--gray-800) 0%, var(--gray-700) 100%);
-            display: flex;
-            align-items: center;
-            padding: 0 1.5rem;
-        }
-
-        .browser-dots {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .dot.red { background: #ef4444; }
-        .dot.yellow { background: #f59e0b; }
-        .dot.green { background: #10b981; }
-
-        .preview-content {
-            margin-top: 60px;
-            color: var(--white);
-        }
-
-        .preview-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .company-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .company-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-        }
-
-        .company-info h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .company-info p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 0;
-        }
-
-        .rating-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(16, 185, 129, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .rating-stars {
-            color: var(--accent-color);
-        }
-
-        .job-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .detail-item i {
-            color: var(--accent-color);
-            width: 16px;
-        }
-
-        .package-info {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .package-label {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .package-range {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .cta-button {
-            width: 100%;
-            background: var(--gradient-accent);
-            color: var(--white);
-            padding: 1rem;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Floating Cards Animation */
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .floating-card {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 1.5rem;
-            color: var(--white);
-            animation: floatCard 15s ease-in-out infinite;
-        }
-
-        .floating-card-1 {
-            top: 10%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-card-2 {
-            bottom: 20%;
-            left: 5%;
-            animation-delay: 5s;
-        }
-
-        .floating-card-3 {
-            top: 40%;
-            right: 5%;
-            animation-delay: 10s;
-        }
-
-        @keyframes floatCard {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateY(-20px) rotate(2deg);
-                opacity: 0.8;
-            }
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 6rem 0;
-            background: linear-gradient(to bottom, var(--white) 0%, var(--gray-100) 100%);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-200);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: rgba(37, 99, 235, 0.2);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 1rem;
-        }
-
-        .feature-description {
-            color: var(--gray-600);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-link {
-            color: var(--primary-color);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .feature-link:hover {
-            gap: 0.75rem;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 4rem 0;
-            background: var(--gradient-primary);
-            color: var(--white);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        /* Companies Section */
-        .companies-section {
-            padding: 4rem 0;
-            background: var(--gray-100);
-        }
-
-        .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .company-logo-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            min-height: 120px;
-        }
-
-        .company-logo-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-
-        .company-logo-placeholder {
-            font-size: 1.5rem;
-            color: var(--gray-600);
-            font-weight: 600;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--dark-color) 0%, var(--gray-800) 100%);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* Testimonials */
-        .testimonials-section {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-200);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 2rem;
-            font-size: 4rem;
-            color: var(--accent-color);
-            opacity: 0.3;
-            font-family: serif;
-        }
-
-        .testimonial-text {
-            color: var(--gray-700);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            color: var(--gray-800);
-            margin: 0;
-        }
-
-        .author-info p {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-color);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-700);
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: var(--white);
-            transition: var(--transition);
-            z-index: 999;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 1rem 2rem;
-            color: var(--gray-800);
-            border-bottom: 1px solid var(--gray-200);
-            transition: var(--transition);
-        }
-
-        .mobile-nav-link:hover {
-            background: var(--gray-100);
-            color: var(--primary-color);
-        }
-
-        .mobile-nav-actions {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu, .nav-actions {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .platform-preview {
-                max-width: 100%;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .companies-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .companies-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <a href="#" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Placify
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#training" class="nav-link">Training</a></li>
-                <li><a href="#placement" class="nav-link">Placement</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            
-            <div class="nav-actions">
-                <a href="/login" class="btn btn-outline">Login</a>
-                <a href="/register" class="btn btn-primary">Get Started</a>
-            </div>
-            
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu">
-        <div class="mobile-menu-content">
-            <a href="#home" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a>
-            <a href="#features" class="mobile-nav-link" onclick="closeMobileMenu()">Features</a>
-            <a href="#training" class="mobile-nav-link" onclick="closeMobileMenu()">Training</a>
-            <a href="#placement" class="mobile-nav-link" onclick="closeMobileMenu()">Placement</a>
-            <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
-            <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
-            <div class="mobile-nav-actions">
-                <a href="/login" class="btn btn-outline">Login</a>
-                <a href="/register" class="btn btn-primary">Get Started</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="floating-elements">
-            <div class="floating-card floating-card-1">
-                <i class="fas fa-brain" style="color: var(--accent-color); margin-bottom: 0.5rem;"></i>
-                <h4>AI Resume Analysis</h4>
-                <p>Smart insights</p>
-            </div>
-            <div class="floating-card floating-card-2">
-                <i class="fas fa-video" style="color: var(--accent-color); margin-bottom: 0.5rem;"></i>
-                <h4>Virtual Interviews</h4>
-                <p>Practice sessions</p>
-            </div>
-            <div class="floating-card floating-card-3">
-                <i class="fas fa-chart-line" style="color: var(--accent-color); margin-bottom: 0.5rem;"></i>
-                <h4>Career Analytics</h4>
-                <p>Track progress</p>
-            </div>
-        </div>
         
-        <div class="hero-content">
-            <div class="hero-text" data-aos="fade-right">
-                <h1 class="hero-title">
-                    Bridge Your Future with <span style="color: var(--accent-color);">Placify</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Connect talented students with top recruiters through our comprehensive AI-powered platform. 
-                    Get job-ready with personalized training, real-time feedback, and direct access to opportunities.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#features" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Start Your Journey
-                    </a>
-                    <a href="#demo" class="btn btn-outline">
-                        <i class="fas fa-play"></i>
-                        Watch Demo
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">15K+</div>
-                        <div class="hero-stat-label">Students Placed</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">750+</div>
-                        <div class="hero-stat-label">Partner Companies</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">92%</div>
-                        <div class="hero-stat-label">Success Rate</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-visual" data-aos="fade-left">
-                <div class="platform-preview">
-                    <div class="browser-dots">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                    </div>
-                    
-                    <div class="preview-content">
-                        <div class="preview-header">
-                            <div class="company-logo">
-                                <div class="company-icon">
-                                    <i class="fas fa-building"></i>
-                                </div>
-                                <div class="company-info">
-                                    <h3>TechCorp Solutions</h3>
-                                    <p>Software Development • Fortune 500</p>
-                                </div>
-                            </div>
-                            <div class="rating-badge">
-                                <div class="rating-stars">
-                                    <i class="fas fa-star"></i>
-                                    <span>4.8</span>
-                                </div>
-                                <span>(2.4K reviews)</span>
-                            </div>
-                        </div>
-                        
-                        <div class="job-details">
-                            <div class="detail-item">
-                                <i class="fas fa-user-tie"></i>
-                                <span>Software Engineer</span>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Mumbai, Remote</span>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Full-time</span>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-users"></i>
-                                <span>2,345 applicants</span>
-                            </div>
-                        </div>
-                        
-                        <div class="package-info">
-                            <div class="package-label">
-                                <i class="fas fa-gift"></i> Salary Package
-                            </div>
-                            <div class="package-range">₹12-18 LPA</div>
-                        </div>
-                        
-                        <button class="cta-button" onclick="showNotification('Application submitted successfully!', 'success')">
-                            <i class="fas fa-paper-plane"></i>
-                            Apply Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        .dashboard-container {
+            padding: 1.5rem 1rem;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+    }
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">Comprehensive Career Platform</h2>
-                <p class="section-subtitle">
-                    Everything you need to transform your career journey from learning to landing your dream job
-                </p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="feature-title">AI-Powered Resume Scanner</h3>
-                    <p class="feature-description">
-                        Advanced machine learning algorithms analyze your resume, providing instant feedback on formatting, 
-                        keywords, and content optimization to maximize your job application success rate.
-                    </p>
-                    <a href="#" class="feature-link">
-                        Scan Resume <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="feature-title">Virtual Interview Practice</h3>
-                    <p class="feature-description">
-                        Practice with AI-powered mock interviews, get real-time feedback on your answers, 
-                        body language, and communication skills. Build confidence before the real interview.
-                    </p>
-                    <a href="#" class="feature-link">
-                        Start Practice <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="feature-title">Industry Training Programs</h3>
-                    <p class="feature-description">
-                        Comprehensive skill development courses designed in partnership with industry leaders. 
-                        Learn the latest technologies and methodologies that employers are actively seeking.
-                    </p>
-                    <a href="#" class="feature-link">
-                        Browse Courses <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="feature-title">Direct Recruiter Connect</h3>
-                    <p class="feature-description">
-                        Real-time chat with hiring managers, attend virtual job fairs, and get direct access to 
-                        opportunities without intermediaries. Build relationships that lead to career success.
-                    </p>
-                    <a href="#" class="feature-link">
-                        Connect Now <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3 class="feature-title">Career Analytics Dashboard</h3>
-                    <p class="feature-description">
-                        Track your progress with detailed analytics, skill assessments, and personalized 
-                        recommendations. Identify growth areas and celebrate your achievements.
-                    </p>
-                    <a href="#" class="feature-link">
-                        View Dashboard <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Verified Opportunities</h3>
-                    <p class="feature-description">
-                        All job postings are verified and vetted to ensure legitimacy and quality. 
-                        Apply with confidence knowing every opportunity is genuine and professionally managed.
-                    </p>
-                    <a href="#" class="feature-link">
-                        Browse Jobs <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    @media (max-width: 768px) {
+        .dashboard-title {
+            font-size: 2rem;
+        }
+        
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+        }
+        
+        .card {
+            padding: 1.5rem;
+        }
+        
+        .quick-actions {
+            grid-template-columns: 1fr;
+        }
+        
+        .application-item,
+        .event-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .application-details {
+            text-align: center;
+        }
+    }
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid" data-aos="fade-up">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="15000">0</div>
-                    <div class="stat-label">Students Trained</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="750">0</div>
-                    <div class="stat-label">Partner Companies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="92">0</div>
-                    <div class="stat-label">Placement Success Rate</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="200">0</div>
-                    <div class="stat-label">Training Modules</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @media (max-width: 480px) {
+        .dashboard-container {
+            padding: 1rem 0.5rem;
+        }
+        
+        .card-header {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .progress-header {
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: center;
+        }
+    }
 
-    <!-- Companies Section -->
-    <section class="companies-section">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">Trusted by Leading Companies</h2>
-                <p class="section-subtitle">
-                    Our students have been successfully placed at top organizations across industries
-                </p>
-            </div>
-            
-            <div class="companies-grid" data-aos="fade-up" data-aos-delay="200">
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Google</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Microsoft</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Amazon</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">JPMorgan</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Accenture</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Infosys</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">TCS</div>
-                </div>
-                <div class="company-logo-card">
-                    <div class="company-logo-placeholder">Wipro</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section" id="testimonials">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <h2 class="section-title">Success Stories</h2>
-                <p class="section-subtitle">
-                    Hear from students who transformed their careers with Placify
-                </p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <p class="testimonial-text">
-                        The AI resume scanner helped me identify key areas for improvement. Within 3 weeks of using Placify's 
-                        platform, I received 5 interview calls and landed a position at my dream company!
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">PR</div>
-                        <div class="author-info">
-                            <h4>Priya Sharma</h4>
-                            <p>Software Engineer at Google</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <p class="testimonial-text">
-                        The mock interview sessions were incredibly realistic. The feedback helped me improve my 
-                        communication skills dramatically. I felt so prepared during my actual interviews.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RK</div>
-                        <div class="author-info">
-                            <h4>Rahul Kumar</h4>
-                            <p>Data Analyst at Microsoft</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <p class="testimonial-text">
-                        Placify's training modules are comprehensive and industry-relevant. The direct connection with 
-                        recruiters made all the difference in finding the right opportunity for my career goals.
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <h4>Anita Singh</h4>
-                            <p>Product Manager at Amazon</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    .dashboard-container > * {
+        animation: fadeInUp 0.6s ease forwards;
+    }
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <h2 class="cta-title">Ready to Transform Your Career?</h2>
-                <p class="cta-subtitle">
-                    Join thousands of students who have successfully launched their careers with Placify. 
-                    Start your journey today with our comprehensive training and placement platform.
-                </p>
-                <div class="cta-buttons">
-                    <a href="/register" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i>
-                        Create Free Account
-                    </a>
-                    <a href="/contact" class="btn btn-outline">
-                        <i class="fas fa-phone"></i>
-                        Talk to an Advisor
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo" style="margin-bottom: 1.5rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Placify
-                    </div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem;">
-                        Bridging the gap between talented students and innovative companies through 
-                        AI-powered training and placement solutions.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>For Students</h4>
-                    <div class="footer-links">
-                        <a href="/resume-builder">AI Resume Builder</a>
-                        <a href="/interview-practice">Interview Practice</a>
-                        <a href="/job-search">Job Opportunities</a>
-                        <a href="/skill-assessment">Skill Assessment</a>
-                        <a href="/career-guidance">Career Guidance</a>
-                        <a href="/success-stories">Success Stories</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>For Recruiters</h4>
-                    <div class="footer-links">
-                        <a href="/post-jobs">Post Job Openings</a>
-                        <a href="/find-candidates">Search Candidates</a>
-                        <a href="/company-profile">Company Dashboard</a>
-                        <a href="/virtual-fairs">Virtual Job Fairs</a>
-                        <a href="/recruitment-analytics">Analytics & Reports</a>
-                        <a href="/enterprise">Enterprise Solutions</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <div class="footer-links">
-                        <a href="/about">About Placify</a>
-                        <a href="/blog">Career Blog</a>
-                        <a href="/webinars">Free Webinars</a>
-                        <a href="/industry-reports">Industry Reports</a>
-                        <a href="/help-center">Help Center</a>
-                        <a href="/contact">Contact Support</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Placify by Team Real. All rights reserved.</p>
-                <div style="margin-top: 0.5rem;">
-                    <a href="/privacy" style="color: rgba(255, 255, 255, 0.6); margin: 0 1rem;">Privacy Policy</a>
-                    <a href="/terms" style="color: rgba(255, 255, 255, 0.6); margin: 0 1rem;">Terms of Service</a>
-                    <a href="/cookies" style="color: rgba(255, 255, 255, 0.6); margin: 0 1rem;">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <div class="floating-chat" onclick="openChat()" title="Chat with us">
-        <i class="fas fa-comments"></i>
+<div class="dashboard-container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Welcome back, {{ user.get_full_name|default:user.username }}!</h1>
+        <p class="dashboard-subtitle">Track your career journey and discover new opportunities</p>
     </div>
 
-    <!-- Notification Container -->
-    <div id="notification-container" class="notification-container"></div>
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="stat-number">12</div>
+            <div class="stat-label">Applications Sent</div>
+            <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+3 this week</span>
+            </div>
+        </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out',
-            once: true,
-            offset: 100
-        });
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-number">5</div>
+            <div class="stat-label">Interviews Scheduled</div>
+            <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+2 new</span>
+            </div>
+        </div>
 
-        // Mobile menu functionality
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn i');
-            
-            mobileMenu.classList.toggle('active');
-            
-            if (mobileMenu.classList.contains('active')) {
-                menuBtn.className = 'fas fa-times';
-                document.body.style.overflow = 'hidden';
-            } else {
-                menuBtn.className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            }
-        }
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-number">85%</div>
+            <div class="stat-label">Profile Completion</div>
+            <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+15% improved</span>
+            </div>
+        </div>
 
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn i');
-            
-            mobileMenu.classList.remove('active');
-            menuBtn.className = 'fas fa-bars';
-            document.body.style.overflow = '';
-        }
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-number">3</div>
+            <div class="stat-label">Skills Certified</div>
+            <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>1 new badge</span>
+            </div>
+        </div>
+    </div>
 
-        // Navbar scroll effect
-        let lastScrollY = 0;
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            lastScrollY = currentScrollY;
-        });
-
-        // Stats counter animation
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            
-            stats.forEach(stat => {
-                const target = parseInt(stat.dataset.count);
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    
-                    if (target >= 1000) {
-                        stat.textContent = (Math.floor(current / 1000)) + 'K+';
-                    } else if (target <= 100) {
-                        stat.textContent = Math.floor(current) + '%';
-                    } else {
-                        stat.textContent = Math.floor(current).toLocaleString();
-                    }
-                }, 16);
-            });
-        }
-
-        // Intersection Observer for stats animation
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) {
-                statsObserver.observe(statsSection);
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Notification system
-        function showNotification(message, type = 'info', duration = 5000) {
-            const container = document.getElementById('notification-container');
-            const notification = document.createElement('div');
-            
-            const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-exclamation-circle',
-                warning: 'fas fa-exclamation-triangle',
-                info: 'fas fa-info-circle'
-            };
-            
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="${icons[type] || icons.info}"></i>
-                    <span>${message}</span>
-                    <button class="notification-close" onclick="closeNotification(this)">
-                        <i class="fas fa-times"></i>
-                    </button>
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-content">
+        <!-- Main Panel -->
+        <div class="main-panel">
+            <!-- Recent Applications -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-file-alt"></i>
+                        Recent Applications
+                    </h3>
+                    <a href="/applications/" class="card-action">View All →</a>
                 </div>
+                
+                <div class="application-item">
+                    <div class="application-icon">TG</div>
+                    <div class="application-details">
+                        <div class="application-title">Senior Frontend Developer</div>
+                        <div class="application-company">TechGlobal Inc.</div>
+                        <span class="application-status status-interview">Interview Scheduled</span>
+                    </div>
+                </div>
+                
+                <div class="application-item">
+                    <div class="application-icon">DS</div>
+                    <div class="application-details">
+                        <div class="application-title">Full Stack Engineer</div>
+                        <div class="application-company">DataSoft Solutions</div>
+                        <span class="application-status status-applied">Under Review</span>
+                    </div>
+                </div>
+                
+                <div class="application-item">
+                    <div class="application-icon">AI</div>
+                    <div class="application-details">
+                        <div class="application-title">AI/ML Developer</div>
+                        <div class="application-company">AI Innovations</div>
+                        <span class="application-status status-accepted">Offer Received</span>
+                    </div>
+                </div>
+                
+                <div class="application-item">
+                    <div class="application-icon">CB</div>
+                    <div class="application-details">
+                        <div class="application-title">Backend Developer</div>
+                        <div class="application-company">CloudBase Systems</div>
+                        <span class="application-status status-applied">Application Sent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Progress -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Skill Development Progress
+                    </h3>
+                    <a href="/training/" class="card-action">View Training →</a>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">JavaScript & React</span>
+                        <span class="progress-value">92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Python & Django</span>
+                        <span class="progress-value">78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Cloud Computing (AWS)</span>
+                        <span class="progress-value">65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">System Design</span>
+                        <span class="progress-value">45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Panel -->
+        <div class="side-panel">
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        Quick Actions
+                    </h3>
+                </div>
+                
+                <div class="quick-actions">
+                    <a href="/jobs/search/" class="action-btn">
+                        <i class="fas fa-search"></i>
+                        <span>Find Jobs</span>
+                    </a>
+                    
+                    <a href="/resume/builder/" class="action-btn">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Build Resume</span>
+                    </a>
+                    
+                    <a href="/interview/practice/" class="action-btn">
+                        <i class="fas fa-microphone"></i>
+                        <span>Practice Interview</span>
+                    </a>
+                    
+                    <a href="/skills/assessment/" class="action-btn">
+                        <i class="fas fa-tasks"></i>
+                        <span>Take Assessment</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        Upcoming Events
+                    </h3>
+                    <a href="/events/" class="card-action">View All →</a>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">
+                        <div>JAN</div>
+                        <div>28</div>
+                    </div>
+                    <div class="event-details">
+                        <h4>Tech Career Fair 2025</h4>
+                        <p>Virtual networking event with 50+ companies</p>
+                        <div class="event-time">10:00 AM - 4:00 PM</div>
+                    </div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">
+                        <div>JAN</div>
+                        <div>30</div>
+                    </div>
+                    <div class="event-details">
+                        <h4>Interview with TechGlobal</h4>
+                        <p>Senior Frontend Developer position</p>
+                        <div class="event-time">2:00 PM - 3:00 PM</div>
+                    </div>
+                </div>
+                
+                <div class="event-item">
+                    <div class="event-date">
+                        <div>FEB</div>
+                        <div>02</div>
+                    </div>
+                    <div class="event-details">
+                        <h4>AI/ML Workshop</h4>
+                        <p>Advanced machine learning techniques</p>
+                        <div class="event-time">6:00 PM - 8:00 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Achievements -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-medal"></i>
+                        Recent Achievements
+                    </h3>
+                </div>
+                
+                <div class="achievement-list">
+                    <div class="event-item">
+                        <div class="event-date" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="event-details">
+                            <h4>React.js Certification</h4>
+                            <p>Completed advanced React.js course</p>
+                            <div class="event-time">2 days ago</div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-date" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="event-details">
+                            <h4>Profile 85% Complete</h4>
+                            <p>Achieved high profile completion rate</p>
+                            <div class="event-time">1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Animate progress bars on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        
+        progressBars.forEach((bar, index) => {
+            setTimeout(() => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            }, index * 200);
+        });
+    });
+
+    // Add click animations to action buttons
+    document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            // Create ripple effect
+            const rect = this.getBoundingClientRect();
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(139, 92, 246, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
             `;
             
-            container.appendChild(notification);
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
             
-            // Auto remove
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    closeNotification(notification.querySelector('.notification-close'));
-                }
-            }, duration);
-        }
-
-        function closeNotification(closeBtn) {
-            const notification = closeBtn.closest('.notification');
-            notification.style.transform = 'translateX(100%)';
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 300);
-        }
-
-        // Chat functionality
-        function openChat() {
-            showNotification('Chat feature will be available soon! Contact us via email for immediate support.', 'info');
-        }
-
-        // Welcome message
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showNotification('Welcome to Placify! Explore our platform to jumpstart your career.', 'success');
-            }, 1500);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const rate = scrolled * -0.3;
+            this.style.position = 'relative';
+            this.appendChild(ripple);
             
-            hero.style.transform = `translateY(${rate}px)`;
+            setTimeout(() => ripple.remove(), 600);
         });
+    });
 
-        // Feature card hover effects
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.boxShadow = 'var(--shadow)';
-            });
-        });
-    </script>
-
-    <style>
-        /* Additional notification styles */
-        .notification-container {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            z-index: 1001;
-            max-width: 400px;
-        }
-
-        .notification {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 1rem;
-            transform: translateX(100%);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-left: 4px solid var(--info-color);
-            animation: slideInRight 0.5s ease-out forwards;
-        }
-
-        @keyframes slideInRight {
+    // Add ripple animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
             to {
-                transform: translateX(0);
-                opacity: 1;
+                transform: scale(4);
+                opacity: 0;
             }
         }
-
-        .notification-success { border-left-color: var(--success-color); }
-        .notification-error { border-left-color: var(--danger-color); }
-        .notification-warning { border-left-color: var(--warning-color); }
-
-        .notification-content {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            gap: 1rem;
-        }
-
-        .notification-content i {
-            font-size: 1.2rem;
-            color: var(--info-color);
-        }
-
-        .notification-success .notification-content i { color: var(--success-color); }
-        .notification-error .notification-content i { color: var(--danger-color); }
-        .notification-warning .notification-content i { color: var(--warning-color); }
-
-        .notification-content span {
-            flex: 1;
-            color: var(--gray-800);
-            font-weight: 500;
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            color: var(--gray-600);
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: var(--border-radius-sm);
-            transition: var(--transition-fast);
-        }
-
-        .notification-close:hover {
-            background: var(--gray-100);
-            color: var(--gray-800);
-        }
-
-        /* Floating chat button */
-        .floating-chat {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 64px;
-            height: 64px;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-xl);
-            transition: var(--transition);
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        .floating-chat:hover {
-            transform: scale(1.1);
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Enhanced mobile responsiveness */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-                padding: 2rem 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-                gap: 1.5rem;
-            }
-            
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .platform-preview {
-                margin-top: 2rem;
-            }
-            
-            .notification-container {
-                right: 1rem;
-                left: 1rem;
-                max-width: none;
-            }
-            
-            .floating-chat {
-                bottom: 1rem;
-                right: 1rem;
-                width: 56px;
-                height: 56px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
-</body>
-</html> 
+    `;
+    document.head.appendChild(style);
+</script>
+{% endblock %}
