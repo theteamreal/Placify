@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your ATS-Optimized Resume</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .action-buttons {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .resume-content {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .resume-text {
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+        
+        .stats-sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            height: fit-content;
+            border: 2px solid #e9ecef;
+        }
+        
+        .stats-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .ats-score {
+            text-align: center;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.2);
+        }
+        
+        .score-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .score-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .tips-section {
+            background: #e8f5e8;
+            border-left: 5px solid #27ae60;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .tips-title {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #2c3e50;
+        }
+        
+        .tips-list li:before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+        
+        .copy-section {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .copy-btn {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #e67e22;
+            transform: translateY(-1px);
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        
+        @media (max-width: 1024px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-sidebar {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .resume-container {
+                padding: 20px;
+            }
+            
+            .resume-content {
+                padding: 20px;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header,
+            .action-buttons,
+            .stats-sidebar {
+                display: none !important;
+            }
+            
+            .resume-container {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+            
+            .resume-content {
+                border: none;
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-check-circle"></i> Resume Generated Successfully!</h1>
+            <p>Your ATS-optimized resume is ready for download and use</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    <i class="fas fa-info-circle"></i> {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="action-buttons">
+            <div>
+                <a href="{% url 'download_resume' %}" class="btn btn-success">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <button class="copy-btn" onclick="copyResumeText()">
+                    <i class="fas fa-copy"></i> Copy Text
+                </button>
+            </div>
+            <div>
+                <a href="{% url 'resume_builder' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Create Another Resume
+                </a>
+                <a href="{% url 'resume_history' %}" class="btn btn-secondary">
+                    <i class="fas fa-history"></i> View History
+                </a>
+            </div>
+        </div>
+
+        <div class="resume-container">
+            <div class="resume-content">
+                <div class="copy-section">
+                    <p><strong>📋 Ready to Copy!</strong> Your resume is optimized and ready to paste into job applications.</p>
+                    <button class="copy-btn" onclick="copyResumeText()">
+                        <i class="fas fa-copy"></i> Copy Resume Text
+                    </button>
+                </div>
+                
+                <div class="resume-text" id="resumeText">{{ resume_content|default:"No resume content available." }}</div>
+            </div>
+
+            <div class="stats-sidebar">
+                <div class="ats-score">
+                    <div class="score-number">{{ user_data.estimated_ats_score|default:"85" }}</div>
+                    <div class="score-label">Estimated ATS Score</div>
+                </div>
+
+                <div class="stats-title">Resume Analytics</div>
+
+                <div class="stat-item">
+                    <div class="stat-label">Word Count</div>
+                    <div class="stat-value" id="wordCount">{{ resume_content|wordcount|default:"0" }}</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-label">Keywords Matched</div>
+                    <div class="stat-value">{{ user_data.keywords_matched|default:"12" }}</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-label">Sections Included</div>
+                    <div class="stat-value" id="sectionCount">7</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-label">Target Position</div>
+                    <div class="stat-value" style="font-size: 1rem;">{{ user_data.target_position|default:"Not specified" }}</div>
+                </div>
+
+                <div class="tips-section">
+                    <div class="tips-title">
+                        <i class="fas fa-lightbulb"></i> Next Steps
+                    </div>
+                    <ul class="tips-list">
+                        <li>Review the content for accuracy</li>
+                        <li>Customize for each job application</li>
+                        <li>Save in multiple formats (PDF, DOCX)</li>
+                        <li>Test with ATS scanners online</li>
+                        <li>Update regularly with new achievements</li>
+                    </ul>
+                </div>
+
+                <div class="tips-section" style="background: #e3f2fd; border-left-color: #2196f3;">
+                    <div class="tips-title" style="color: #2196f3;">
+                        <i class="fas fa-robot"></i> AI Optimization Features
+                    </div>
+                    <ul class="tips-list">
+                        <li>Job description keyword matching</li>
+                        <li>ATS-friendly formatting</li>
+                        <li>Industry-specific language</li>
+                        <li>Quantified achievements</li>
+                        <li>Professional summary optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyResumeText() {
+            const resumeText = document.getElementById('resumeText').textContent;
+            
+            // Create a temporary textarea element
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = resumeText;
+            document.body.appendChild(tempTextArea);
+            
+            // Select and copy the text
+            tempTextArea.select();
+            tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                
+                // Show success feedback
+                const copyButtons = document.querySelectorAll('.copy-btn');
+                copyButtons.forEach(btn => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    btn.style.background = '#27ae60';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '#f39c12';
+                    }, 2000);
+                });
+                
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy text. Please select and copy manually.');
+            }
+            
+            // Remove the temporary element
+            document.body.removeChild(tempTextArea);
+        }
+
+        // Calculate actual word count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const resumeText = document.getElementById('resumeText').textContent;
+            const wordCount = resumeText.trim().split(/\s+/).length;
+            document.getElementById('wordCount').textContent = wordCount;
+
+            // Count sections (basic estimation)
+            const sectionKeywords = ['EXPERIENCE', 'EDUCATION', 'SKILLS', 'SUMMARY', 'PROJECTS', 'CERTIFICATIONS'];
+            let sectionCount = 0;
+            sectionKeywords.forEach(keyword => {
+                if (resumeText.toUpperCase().includes(keyword)) {
+                    sectionCount++;
+                }
+            });
+            document.getElementById('sectionCount').textContent = Math.max(sectionCount, 5);
+        });
+
+        // Print functionality
+        function printResume() {
+            window.print();
+        }
+
+        // Add print button if needed
+        const actionButtons = document.querySelector('.action-buttons div:first-child');
+        if (actionButtons) {
+            const printBtn = document.createElement('button');
+            printBtn.className = 'btn btn-secondary';
+            printBtn.innerHTML = '<i class="fas fa-print"></i> Print Resume';
+            printBtn.onclick = printResume;
+            actionButtons.appendChild(printBtn);
+        }
+
+       
+        
+        try {
+            localStorage.setItem('lastGeneratedResume', JSON.stringify({
+                content: resumeContent,
+                userData: userData,
+                timestamp: new Date().toISOString()
+            }));
+        } catch (e) {
+            console.warn('Could not save to localStorage:', e);
+        }
+
+        // Show tips based on resume length
+        document.addEventListener('DOMContentLoaded', function() {
+            const wordCount = document.getElementById('wordCount').textContent;
+            const tipsSection = document.querySelector('.tips-section');
+            
+            if (parseInt(wordCount) < 200) {
+                const shortResumeWarning = document.createElement('div');
+                shortResumeWarning.className = 'tips-section';
+                shortResumeWarning.style.background = '#fff3cd';
+                shortResumeWarning.style.borderLeftColor = '#ffc107';
+                shortResumeWarning.innerHTML = `
+                    <div class="tips-title" style="color: #856404;">
+                        <i class="fas fa-exclamation-triangle"></i> Resume Length Notice
+                    </div>
+                    <ul class="tips-list">
+                        <li>Your resume appears shorter than typical</li>
+                        <li>Consider adding more detail to experiences</li>
+                        <li>Include quantified achievements</li>
+                        <li>Add relevant projects or certifications</li>
+                    </ul>
+                `;
+                tipsSection.parentNode.insertBefore(shortResumeWarning, tipsSection);
+            }
+        });
+    </script>
+</body>
+</html>

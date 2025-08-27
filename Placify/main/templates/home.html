@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placify - Your Gateway to Career Success</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% extends "base.html" %}
+{%block start%}
     <style>
         * {
             margin: 0;
@@ -13,9 +8,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
@@ -24,8 +19,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(13, 110, 253, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -41,8 +37,8 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: white;
             text-decoration: none;
             display: flex;
@@ -51,7 +47,11 @@
         }
 
         .logo i {
-            color: #ffc107;
+            color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -61,17 +61,35 @@
         }
 
         .nav-links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
+            border-radius: 8px;
+            position: relative;
         }
 
         .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .nav-cta:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
         .mobile-menu {
@@ -83,12 +101,13 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            padding: 8rem 0 4rem;
         }
 
         .hero::before {
@@ -98,13 +117,54 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
-            animation: float 20s ease-in-out infinite;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+
+        .floating-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .orb:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 30%;
+            left: 70%;
+            animation-delay: 4s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         .hero-content {
@@ -119,120 +179,228 @@
             z-index: 2;
         }
 
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            color: #8b5cf6;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
         .hero-text h1 {
             font-size: 3.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            animation: slideInLeft 1s ease-out;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-text .subtitle {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            animation: slideInLeft 1s ease-out 0.2s both;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
-            animation: slideInLeft 1s ease-out 0.4s both;
         }
 
         .btn {
             padding: 1rem 2rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #ffc107, #ff8c00);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
             color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05);
             color: white;
-            border: 2px solid white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
 
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: slideInRight 1s ease-out;
+            position: relative;
         }
 
-        .hero-cards {
+        .dashboard-preview {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .preview-title {
+            color: white;
+            font-weight: 600;
+        }
+
+        .preview-status {
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .preview-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            transform: rotate(10deg);
         }
 
-        .hero-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        .preview-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
             padding: 1.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             text-align: center;
-            color: white;
             transition: all 0.3s ease;
         }
 
-        .hero-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
+        .preview-card:hover {
+            background: rgba(139, 92, 246, 0.15);
+            transform: translateY(-3px);
         }
 
-        .hero-card i {
+        .preview-card i {
             font-size: 2rem;
+            color: #8b5cf6;
             margin-bottom: 0.5rem;
-            color: #ffc107;
+            display: block;
+        }
+
+        .preview-card h4 {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .preview-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
         }
 
         /* Features Section */
         .features {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #333;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -240,55 +408,92 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2.5rem;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             color: white;
             font-size: 2rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card p {
-            color: #666;
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
             padding: 4rem 0;
-            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.03)" points="0,1000 1000,0 1000,1000"/></svg>');
         }
 
         .stats-grid {
@@ -296,38 +501,47 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            padding: 1rem;
         }
 
         .stat-item h3 {
-            font-size: 3rem;
-            font-weight: bold;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
+            color: white;
         }
 
         .stat-item p {
             font-size: 1.1rem;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
         }
 
         /* AI Tools Section */
         .ai-tools {
-            padding: 5rem 0;
-            background: #f8f9fa;
+            padding: 6rem 0;
+            background: #0a0a0f;
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .tool-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -335,66 +549,111 @@
         .tool-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: -2px;
+            left: -2px;
+            right: -2px;
             height: 4px;
-            background: linear-gradient(45deg, #ffc107, #ff8c00);
+            background: linear-gradient(90deg, #8b5cf6, #a855f7, #3b82f6);
+            border-radius: 20px 20px 0 0;
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.15);
         }
 
         .tool-card h4 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tool-card h4 i {
+            color: #8b5cf6;
+            font-size: 1.3rem;
+        }
+
+        .tool-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tool-btn {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
         }
 
         /* Footer */
         .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 3rem 0 1rem;
+            background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h4 {
-            margin-bottom: 1rem;
-            color: #ffc107;
+            margin-bottom: 1.5rem;
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
         .footer-section a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
         }
 
         .footer-section a:hover {
-            color: #ffc107;
+            color: #8b5cf6;
+            transform: translateX(5px);
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
-            background: #333;
-            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -402,15 +661,69 @@
         }
 
         .social-links a:hover {
-            background: #ffc107;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #666;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Floating Elements */
+        .floating-chat {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-chat:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5);
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            z-index: 1001;
+            color: white;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            right: 2rem;
+        }
+
+        .notification h4 {
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* Animations */
@@ -436,7 +749,47 @@
             }
         }
 
-        /* Responsive */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -446,128 +799,157 @@
                 display: block;
             }
             
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .nav-cta {
+                display: none;
             }
             
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
         }
 
-        /* Interactive Elements */
-        .floating-chat {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #ffc107, #ff8c00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .floating-chat {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
         }
 
-        .floating-chat:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: -300px;
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1001;
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .notification.show {
-            right: 2rem;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #a855f7, #8b5cf6);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Placify
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#training">Training</a></li>
-                <li><a href="#placement">Placement</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="floating-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
+        </div>
+        
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Bridge Your Future with <span style="color: #ffc107;">Placify</span></h1>
+                <div class="badge">
+                    <span>2025</span>
+                    <span>Discover What's Possible</span>
+                </div>
+                
+                <h1>Future-Ready Career Solutions For Modern Students</h1>
+                
                 <p class="subtitle">
-                    Connect students and recruiters through our comprehensive training and placement platform. 
-                    Get job-ready with AI-powered tools and real-time interactions.
+                    Transform your career journey with our comprehensive AI-powered training and placement platform. 
+                    Connect directly with top recruiters and unlock your potential.
                 </p>
+                
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary" onclick="showNotification('Getting Started!')">
+                    <a href="#" class="btn btn-primary" onclick="showNotification('Launching Career Dashboard!', 'info')">
                         <i class="fas fa-rocket"></i>
-                        Get Started
+                        Connect With Us
                     </a>
-                    <a href="#" class="btn btn-secondary">
+                    <a href="#" class="btn btn-secondary" onclick="showNotification('Demo video loading...', 'info')">
                         <i class="fas fa-play"></i>
-                        Watch Demo
+                        What can we build?
                     </a>
                 </div>
-                <p style="font-size: 0.9rem; opacity: 0.8;">
-                    <i class="fas fa-users"></i> Trusted by 10,000+ students and 500+ companies
-                </p>
+                
+                <div class="hero-stats">
+                    <i class="fas fa-users"></i>
+                    <span>Trusted by 10,000+ students and 500+ companies worldwide</span>
+                </div>
             </div>
+            
             <div class="hero-visual">
-                <div class="hero-cards">
-                    <div class="hero-card">
-                        <i class="fas fa-brain"></i>
-                        <h4>AI Resume Scanner</h4>
-                        <p>Smart analysis</p>
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-title">Career Dashboard</div>
+                        <div class="preview-status">Active</div>
                     </div>
-                    <div class="hero-card">
-                        <i class="fas fa-video"></i>
-                        <h4>Virtual Interviews</h4>
-                        <p>Practice sessions</p>
-                    </div>
-                    <div class="hero-card">
-                        <i class="fas fa-comments"></i>
-                        <h4>Real-time Chat</h4>
-                        <p>Direct connection</p>
-                    </div>
-                    <div class="hero-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h4>Career Growth</h4>
-                        <p>Track progress</p>
+                    <div class="preview-cards">
+                        <div class="preview-card pulse-animation">
+                            <i class="fas fa-brain"></i>
+                            <h4>AI Resume Scanner</h4>
+                            <p>Smart Analysis</p>
+                        </div>
+                        <div class="preview-card">
+                            <i class="fas fa-video"></i>
+                            <h4>Mock Interviews</h4>
+                            <p>Practice Hub</p>
+                        </div>
+                        <div class="preview-card">
+                            <i class="fas fa-comments"></i>
+                            <h4>Live Chat</h4>
+                            <p>Direct Connect</p>
+                        </div>
+                        <div class="preview-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Career Analytics</h4>
+                            <p>Track Growth</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -577,58 +959,58 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">Comprehensive Platform Features</h2>
-            <p class="section-subtitle">
-                Everything you need to bridge the gap between students and recruiters
+            <h2 class="section-title animate-on-scroll">Future-Ready Platform Features</h2>
+            <p class="section-subtitle animate-on-scroll">
+                Everything you need to bridge the gap between students and recruiters with cutting-edge technology
             </p>
             
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-user-friends"></i>
                     </div>
-                    <h3>User-Friendly Navigation</h3>
-                    <p>Intuitive interface for easy access to resources, tools, and opportunities. Designed for seamless user experience across all devices.</p>
+                    <h3>Intelligent Navigation</h3>
+                    <p>Next-generation interface designed for seamless user experience across all devices. Smart recommendations and personalized content delivery.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Training Programs</h3>
-                    <p>Comprehensive course content with detailed schedules and engaging multimedia. Interactive learning modules for skill development.</p>
+                    <h3>AI-Powered Training</h3>
+                    <p>Adaptive learning programs with real-time progress tracking. Interactive multimedia content and personalized skill development paths.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3>Placement Resources</h3>
-                    <p>Complete resume guides, interview tips, company profiles, and job boards. Everything needed for successful job placement.</p>
+                    <h3>Smart Placement Engine</h3>
+                    <p>Advanced matching algorithms connect students with perfect opportunities. Comprehensive interview preparation and career guidance tools.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3>Student-Employer Interaction</h3>
-                    <p>Real-time chat, Q&A sessions, and virtual job fairs. Direct communication channels between students and recruiters.</p>
+                    <h3>Real-Time Collaboration</h3>
+                    <p>Instant messaging, video calls, and virtual job fairs. Direct communication channels between students, mentors, and recruiters.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <h3>AI Resume Scanner</h3>
-                    <p>Advanced AI technology to auto-scan resumes and extract valuable insights. Optimize your resume for better job matching.</p>
+                    <h3>Advanced AI Scanner</h3>
+                    <p>Machine learning algorithms analyze resumes and provide optimization insights. Automated skill assessment and improvement recommendations.</p>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-microphone"></i>
                     </div>
-                    <h3>Interview Practice Tools</h3>
-                    <p>Mock interviews with real-time feedback and adaptive sessions. Practice with AI-powered interview simulation.</p>
+                    <h3>Virtual Interview Lab</h3>
+                    <p>AI-powered mock interviews with real-time feedback. Adaptive questioning based on industry standards and personal performance.</p>
                 </div>
             </div>
         </div>
@@ -647,12 +1029,12 @@
                     <p>Partner Companies</p>
                 </div>
                 <div class="stat-item">
-                    <h3 id="placementRate">85%</h3>
-                    <p>Placement Rate</p>
+                    <h3 id="placementRate">92%</h3>
+                    <p>Success Rate</p>
                 </div>
                 <div class="stat-item">
-                    <h3 id="coursesCount">150+</h3>
-                    <p>Training Courses</p>
+                    <h3 id="coursesCount">200+</h3>
+                    <p>AI-Powered Courses</p>
                 </div>
             </div>
         </div>
@@ -661,87 +1043,51 @@
     <!-- AI Tools Section -->
     <section class="ai-tools" id="training">
         <div class="container">
-            <h2 class="section-title">AI-Powered Career Tools</h2>
-            <p class="section-subtitle">
-                Leverage artificial intelligence to enhance your career preparation
+            <h2 class="section-title animate-on-scroll">Next-Generation Career Tools</h2>
+            <p class="section-subtitle animate-on-scroll">
+                Harness the power of artificial intelligence to accelerate your career growth
             </p>
             
             <div class="tools-grid">
-                <div class="tool-card">
-                    <h4><i class="fas fa-file-alt"></i> Smart Resume Builder</h4>
-                    <p>AI-assisted resume creation with industry-specific templates and optimization suggestions.</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showNotification('Resume Builder Coming Soon!')">Try Now</button>
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-file-alt"></i> Intelligent Resume Builder</h4>
+                    <p>AI-driven resume optimization with real-time suggestions, ATS compatibility checks, and industry-specific templates powered by machine learning.</p>
+                    <button class="tool-btn" onclick="showNotification('AI Resume Builder launching soon!', 'info')">Launch Builder</button>
                 </div>
                 
-                <div class="tool-card">
-                    <h4><i class="fas fa-search"></i> Job Matching Engine</h4>
-                    <p>Advanced algorithms match your skills with the most relevant job opportunities from our partner companies.</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showNotification('Job Matching Active!')">Explore Jobs</button>
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-search"></i> Smart Job Matching</h4>
+                    <p>Advanced neural networks analyze your profile and match you with opportunities that align perfectly with your skills, interests, and career goals.</p>
+                    <button class="tool-btn" onclick="showNotification('Discovering perfect matches...', 'success')">Find Opportunities</button>
                 </div>
                 
-                <div class="tool-card">
-                    <h4><i class="fas fa-chart-bar"></i> Skill Gap Analysis</h4>
-                    <p>Identify areas for improvement and get personalized learning recommendations based on industry trends.</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showNotification('Analyzing Skills...')">Analyze Skills</button>
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-chart-bar"></i> Predictive Skill Analysis</h4>
+                    <p>Machine learning algorithms identify skill gaps and predict future industry demands. Get personalized learning roadmaps based on market trends.</p>
+                    <button class="tool-btn" onclick="showNotification('Analyzing future skill requirements...', 'info')">Analyze Skills</button>
                 </div>
                 
-                <div class="tool-card">
-                    <h4><i class="fas fa-calendar-check"></i> Interview Scheduler</h4>
-                    <p>Automated scheduling system that coordinates interviews between students and recruiters efficiently.</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="showNotification('Scheduler Ready!')">Schedule Now</button>
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-calendar-check"></i> Automated Scheduling</h4>
+                    <p>AI-powered scheduling system that optimizes interview timing for both students and recruiters. Smart calendar integration and conflict resolution.</p>
+                    <button class="tool-btn" onclick="showNotification('Smart scheduler activated!', 'success')">Schedule Interview</button>
+                </div>
+                
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-brain"></i> Career Intelligence Hub</h4>
+                    <p>Real-time market analytics, salary insights, and career path predictions. Make data-driven decisions about your professional future.</p>
+                    <button class="tool-btn" onclick="showNotification('Loading career intelligence...', 'info')">Access Insights</button>
+                </div>
+                
+                <div class="tool-card animate-on-scroll">
+                    <h4><i class="fas fa-network-wired"></i> Network Builder AI</h4>
+                    <p>Intelligent networking suggestions based on career goals and industry connections. Automated relationship mapping and opportunity discovery.</p>
+                    <button class="tool-btn" onclick="showNotification('Building your professional network...', 'success')">Start Networking</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Placify</h4>
-                    <p>Bridging the gap between students and recruiters through innovative technology and comprehensive training programs.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="#">About Us</a>
-                    <a href="#">Training Programs</a>
-                    <a href="#">Placement Services</a>
-                    <a href="#">Success Stories</a>
-                    <a href="#">Contact</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>For Students</h4>
-                    <a href="#">Resume Builder</a>
-                    <a href="#">Interview Practice</a>
-                    <a href="#">Job Search</a>
-                    <a href="#">Skill Assessment</a>
-                    <a href="#">Career Guidance</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>For Recruiters</h4>
-                    <a href="#">Post Jobs</a>
-                    <a href="#">Find Candidates</a>
-                    <a href="#">Company Profile</a>
-                    <a href="#">Virtual Job Fairs</a>
-                    <a href="#">Analytics</a>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Placify by Team Real. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Floating Chat Button -->
     <div class="floating-chat" onclick="openChat()">
@@ -750,12 +1096,47 @@
 
     <!-- Notification -->
     <div class="notification" id="notification">
-        <h4><i class="fas fa-bell"></i> Notification</h4>
-        <p id="notificationText">Welcome to Placify!</p>
+        <h4><i class="fas fa-bell"></i> <span id="notificationTitle">Notification</span></h4>
+        <p id="notificationText">Welcome to the future of career development!</p>
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const title = document.getElementById('notificationTitle');
+            const text = document.getElementById('notificationText');
+            
+            const titles = {
+                success: 'Success',
+                info: 'Information',
+                warning: 'Alert',
+                error: 'Error'
+            };
+            
+            const colors = {
+                success: '#10b981',
+                info: '#8b5cf6',
+                warning: '#f59e0b',
+                error: '#ef4444'
+            };
+            
+            title.textContent = titles[type] || 'Notification';
+            text.textContent = message;
+            notification.querySelector('i').style.color = colors[type] || '#8b5cf6';
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Enhanced chat function
+        function openChat() {
+            showNotification('AI Assistant ready to help! Connect with our career experts.', 'success');
+        }
+
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -769,13 +1150,17 @@
             });
         });
 
-        // Navbar background change on scroll
+        // Enhanced navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(13, 110, 253, 0.98)';
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.98)';
+                navbar.style.borderBottom = '1px solid rgba(139, 92, 246, 0.3)';
             } else {
-                navbar.style.background = 'rgba(13, 110, 253, 0.95)';
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+                navbar.style.borderBottom = '1px solid rgba(139, 92, 246, 0.1)';
             }
         });
 
@@ -786,7 +1171,7 @@
                 const finalValue = stat.textContent;
                 const numValue = parseInt(finalValue.replace(/[^\d]/g, ''));
                 let currentValue = 0;
-                const increment = numValue / 100;
+                const increment = numValue / 80;
                 
                 const timer = setInterval(() => {
                     currentValue += increment;
@@ -802,14 +1187,14 @@
                     } else {
                         stat.textContent = Math.floor(currentValue).toLocaleString();
                     }
-                }, 20);
+                }, 30);
             });
         };
 
-        // Intersection Observer for animations
+        // Advanced scroll animations
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -818,71 +1203,154 @@
                     if (entry.target.classList.contains('stats')) {
                         animateStats();
                     }
-                    entry.target.style.animation = 'slideInUp 0.8s ease-out forwards';
+                    
+                    if (entry.target.classList.contains('animate-on-scroll')) {
+                        entry.target.classList.add('animated');
+                    }
                 }
             });
         }, observerOptions);
 
-        // Observe sections for animations
-        document.querySelectorAll('.features, .stats, .ai-tools').forEach(section => {
-            observer.observe(section);
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll, .stats').forEach(element => {
+            observer.observe(element);
         });
 
-        // Show notification function
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            const notificationText = document.getElementById('notificationText');
-            notificationText.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Open chat function
-        function openChat() {
-            showNotification('Chat feature coming soon! Contact us for support.');
-        }
-
-        // Mobile menu toggle
+        // Mobile menu functionality
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
 
         mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            const isVisible = navLinks.style.display === 'flex';
+            navLinks.style.display = isVisible ? 'none' : 'flex';
+            
+            if (!isVisible) {
+                navLinks.style.position = 'fixed';
+                navLinks.style.top = '80px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(10, 10, 15, 0.98)';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.padding = '2rem';
+                navLinks.style.backdropFilter = 'blur(20px)';
+                navLinks.style.border = '1px solid rgba(139, 92, 246, 0.2)';
+            } else {
+                navLinks.style.position = '';
+                navLinks.style.top = '';
+                navLinks.style.left = '';
+                navLinks.style.width = '';
+                navLinks.style.background = '';
+                navLinks.style.flexDirection = '';
+                navLinks.style.padding = '';
+                navLinks.style.backdropFilter = '';
+                navLinks.style.border = '';
+            }
         });
 
-        // Add CSS for slideInUp animation
+        // Enhanced parallax effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-orbs');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Interactive card effects
+        document.querySelectorAll('.preview-card, .feature-card, .tool-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Welcome sequence
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showNotification('Welcome to the future of career development!', 'success');
+            }, 1500);
+            
+            // Add staggered animations to hero elements
+            const heroElements = document.querySelectorAll('.hero-text > *');
+            heroElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    element.style.transition = 'all 0.6s ease';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Dynamic background effects
+        function createFloatingParticles() {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(139, 92, 246, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 3 + 4}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                hero.appendChild(particle);
+            }
+        }
+
+        createFloatingParticles();
+
+        // Enhanced tool interactions
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes slideInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(50px);
-                }
+            @keyframes ripple {
                 to {
-                    opacity: 1;
-                    transform: translateY(0);
+                    transform: scale(4);
+                    opacity: 0;
                 }
             }
         `;
         document.head.appendChild(style);
 
-        // Welcome notification on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showNotification('Welcome to Placify! Explore our features to get started.');
-            }, 1000);
-        });
-
-        // Add parallax effect to hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
+        console.log('Placify Modern UI Loaded Successfully! 🚀');
     </script>
-</body>
-</html>
+{% endblock %}

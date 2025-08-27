@@ -3,1546 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Placify - Training & Placement Platform{% endblock %}</title>
-    
-    <!-- Meta Tags -->
-    <meta name="description" content="Placify - Complete training and placement platform bridging students and recruiters with AI-powered tools">
-    <meta name="keywords" content="training, placement, jobs, students, recruiters, AI resume scanner, interview practice">
-    <meta name="author" content="Team Real">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Placify - Training & Placement Platform">
-    <meta property="og:description" content="Bridge your future with comprehensive training and placement solutions">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://placify.com">
-    <meta property="og:image" content="https://placify.com/assets/images/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
-    
-    <!-- External CSS Libraries -->
+    <title>Placify - Your Gateway to Career Success</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    
-    <!-- Base CSS Styles -->
     <style>
-        /* CSS Variables for Theme Customization */
-        :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #ffc107;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --white: #ffffff;
-            --black: #000000;
-            
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-accent: linear-gradient(135deg, var(--accent-color), #ff8c00);
-            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --font-size-base: 1rem;
-            --font-size-sm: 0.875rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            
-            --border-radius: 10px;
-            --border-radius-sm: 5px;
-            --border-radius-lg: 20px;
-            --border-radius-xl: 25px;
-            
-            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
-            --shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
-            
-            --transition: all 0.3s ease;
-            --transition-fast: all 0.2s ease;
-            --transition-slow: all 0.5s ease;
-        }
-        
-        /* Dark Mode Variables */
-        [data-theme="dark"] {
-            --light-color: #2c3e50;
-            --dark-color: #ecf0f1;
-            --white: #34495e;
-            --black: #ecf0f1;
-        }
-
-        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
         body {
-            font-family: var(--font-family);
-            line-height: 1.6;
-            color: var(--dark-color);
-            background: var(--white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-        h4 { font-size: 1.25rem; }
-        h5 { font-size: 1.1rem; }
-        h6 { font-size: 1rem; }
-
-        p {
-            margin-bottom: 1rem;
-            color: #666;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .container-fluid {
-            width: 100%;
-            padding: 0 2rem;
-        }
-
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-        .text-right { text-align: right; }
-
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
-        .text-accent { color: var(--accent-color); }
-        .text-success { color: var(--success-color); }
-        .text-warning { color: var(--warning-color); }
-        .text-danger { color: var(--danger-color); }
-        .text-info { color: var(--info-color); }
-        .text-light { color: var(--light-color); }
-        .text-dark { color: var(--dark-color); }
-        .text-white { color: var(--white); }
-
-        .bg-primary { background: var(--primary-color); }
-        .bg-secondary { background: var(--secondary-color); }
-        .bg-accent { background: var(--accent-color); }
-        .bg-gradient { background: var(--gradient-primary); }
-        .bg-gradient-accent { background: var(--gradient-accent); }
-        .bg-light { background: var(--light-color); }
-        .bg-white { background: var(--white); }
-
-        .d-none { display: none; }
-        .d-block { display: block; }
-        .d-inline { display: inline; }
-        .d-inline-block { display: inline-block; }
-        .d-flex { display: flex; }
-        .d-grid { display: grid; }
-
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-around { justify-content: space-around; }
-        .align-center { align-items: center; }
-        .align-start { align-items: flex-start; }
-        .align-end { align-items: flex-end; }
-
-        .flex-wrap { flex-wrap: wrap; }
-        .flex-column { flex-direction: column; }
-        .flex-row { flex-direction: row; }
-
-        .gap-1 { gap: 0.5rem; }
-        .gap-2 { gap: 1rem; }
-        .gap-3 { gap: 1.5rem; }
-        .gap-4 { gap: 2rem; }
-
-        .m-0 { margin: 0; }
-        .m-1 { margin: 0.5rem; }
-        .m-2 { margin: 1rem; }
-        .m-3 { margin: 1.5rem; }
-        .m-4 { margin: 2rem; }
-
-        .p-0 { padding: 0; }
-        .p-1 { padding: 0.5rem; }
-        .p-2 { padding: 1rem; }
-        .p-3 { padding: 1.5rem; }
-        .p-4 { padding: 2rem; }
-
-        .mt-1 { margin-top: 0.5rem; }
-        .mt-2 { margin-top: 1rem; }
-        .mt-3 { margin-top: 1.5rem; }
-        .mt-4 { margin-top: 2rem; }
-
-        .mb-1 { margin-bottom: 0.5rem; }
-        .mb-2 { margin-bottom: 1rem; }
-        .mb-3 { margin-bottom: 1.5rem; }
-        .mb-4 { margin-bottom: 2rem; }
-
-        .pt-1 { padding-top: 0.5rem; }
-        .pt-2 { padding-top: 1rem; }
-        .pt-3 { padding-top: 1.5rem; }
-        .pt-4 { padding-top: 2rem; }
-
-        .pb-1 { padding-bottom: 0.5rem; }
-        .pb-2 { padding-bottom: 1rem; }
-        .pb-3 { padding-bottom: 1.5rem; }
-        .pb-4 { padding-bottom: 2rem; }
-
-        .rounded { border-radius: var(--border-radius); }
-        .rounded-sm { border-radius: var(--border-radius-sm); }
-        .rounded-lg { border-radius: var(--border-radius-lg); }
-        .rounded-xl { border-radius: var(--border-radius-xl); }
-        .rounded-full { border-radius: 50%; }
-
-        .shadow { box-shadow: var(--shadow); }
-        .shadow-sm { box-shadow: var(--shadow-sm); }
-        .shadow-lg { box-shadow: var(--shadow-lg); }
-        .shadow-xl { box-shadow: var(--shadow-xl); }
-
-        /* Component Base Styles */
-        
-        /* Header/Navigation */
-        .header {
+        /* Navigation */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
             z-index: 1000;
-            transition: var(--transition);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
-        .navbar {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .nav-menu {
+        .logo i {
+            color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-link {
-            color: var(--white);
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
-            border-radius: var(--border-radius-xl);
-            transition: var(--transition);
+            border-radius: 8px;
+            position: relative;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+        .nav-links a:hover {
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
+        /* User Dropdown Styles */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .user-trigger:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.8rem 2rem;
-            font-size: var(--font-size-base);
+            font-size: 0.9rem;
             font-weight: 600;
-            text-align: center;
-            border: none;
-            border-radius: var(--border-radius-xl);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            min-width: fit-content;
+            color: white;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .btn:active {
+        .user-greeting {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1;
+        }
+
+        .user-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .user-dropdown.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            min-width: 220px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(139, 92, 246, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .user-dropdown.open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
 
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--white);
+        .dropdown-header {
+            padding: 1rem 1.25rem 0.5rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
         }
 
-        .btn-secondary {
-            background: var(--gradient-accent);
-            color: var(--white);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .btn-light {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: var(--font-size-sm);
-        }
-
-        .btn-lg {
-            padding: 1rem 2.5rem;
-            font-size: var(--font-size-lg);
-        }
-
-        /* Cards */
-        .card {
-            background: var(--white);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-title {
-            font-size: var(--font-size-xl);
-            font-weight: bold;
-            color: var(--dark-color);
-            margin: 0;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
+        .dropdown-user-info {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-        }
-
-        .card-body {
-            color: #666;
-        }
-
-        .card-footer {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e9ecef;
-        }
-
-        /* Forms */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: var(--font-size-base);
-            border: 1px solid #e9ecef;
-            border-radius: var(--border-radius);
-            background: var(--white);
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.75rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-
-        /* Grid System */
-        .grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .grid-auto-sm { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        .grid-auto-lg { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-
-        /* Section Layouts */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-sm {
-            padding: 3rem 0;
-        }
-
-        .section-lg {
-            padding: 7rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        .section-subtitle {
-            font-size: var(--font-size-lg);
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Loading States */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loading-lg {
-            width: 40px;
-            height: 40px;
-            border-width: 4px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        .slide-up {
-            animation: slideUp 0.6s ease-out;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.6s ease-out;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 100%;
-                padding: 0 1.5rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
-            .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-        }
-
-        @media (max-width: 768px) {
-            .container, .container-fluid {
-                padding: 0 1rem;
-            }
-            
-            .grid-cols-4,
-            .grid-cols-3,
-            .grid-cols-2 {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-menu {
-                display: none;
-            }
-            
-            .section {
-                padding: 3rem 0;
-            }
-            
-            .section-title {
-                font-size: 1.75rem;
-            }
-            
-            .btn {
-                padding: 0.7rem 1.5rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            h1 { font-size: 1.75rem; }
-            h2 { font-size: 1.5rem; }
-            
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: var(--font-size-sm);
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus states for better accessibility */
-        *:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-color);
-        }
-
-        /* Print styles */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            
-            .header {
-                position: static;
-            }
-            
-            body {
-                font-size: 12pt;
-            }
-            
-            .shadow,
-            .shadow-sm,
-            .shadow-lg,
-            .shadow-xl {
-                box-shadow: none !important;
-            }
-        }
-    </style>
-
-    {% block extra_css %}{% endblock %}
-</head>
-
-<body class="{% block body_class %}{% endblock %}">
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
-
-    <!-- Loading Overlay -->
-    <div id="loading-overlay" class="loading-overlay" style="display: none;">
-        <div class="loading-content">
-            <div class="loading loading-lg"></div>
-            <p>Loading...</p>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header {% block header_class %}bg-gradient{% endblock %}">
-        <div class="container">
-            <nav class="navbar">
-                {% block navbar %}
-                <a href="/" class="logo">
-                    <i class="fas fa-graduation-cap text-accent"></i>
-                    Placify
-                </a>
-                
-                <ul class="nav-menu">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li><a href="/dashboard" class="nav-link">Dashboard</a></li>
-                    <li><a href="/training" class="nav-link">Training</a></li>
-                    <li><a href="/placement" class="nav-link">Placement</a></li>
-                    <li><a href="/about" class="nav-link">About</a></li>
-                    <li><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <div class="nav-actions">
-                    <a href="/login" class="btn btn-outline btn-sm">Login</a>
-                    <a href="/register" class="btn btn-light btn-sm">Sign Up</a>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <button class="mobile-menu-btn d-none" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                {% endblock %}
-            </nav>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu" style="display: none;">
-        <div class="mobile-menu-content">
-            <a href="/" class="mobile-nav-link">Home</a>
-            <a href="/dashboard" class="mobile-nav-link">Dashboard</a>
-            <a href="/training" class="mobile-nav-link">Training</a>
-            <a href="/placement" class="mobile-nav-link">Placement</a>
-            <a href="/about" class="mobile-nav-link">About</a>
-            <a href="/contact" class="mobile-nav-link">Contact</a>
-            <div class="mobile-nav-actions">
-                <a href="/login" class="btn btn-primary btn-sm">Login</a>
-                <a href="/register" class="btn btn-secondary btn-sm">Sign Up</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main id="main-content" class="main-content">
-        {% block content %}
-        <section class="section">
-            <div class="container text-center">
-                <h1>Welcome to Placify Base Template</h1>
-                <p>This is the base template for the Placify platform. Extend this template to create specific pages.</p>
-                <a href="/dashboard" class="btn btn-primary btn-lg">
-                    <i class="fas fa-arrow-right"></i>
-                    Get Started
-                </a>
-            </div>
-        </section>
-        {% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer bg-dark text-white">
-        {% block footer %}
-        <div class="container">
-            <div class="footer-content grid grid-auto mb-4">
-                <div class="footer-section">
-                    <div class="logo mb-3">
-                        <i class="fas fa-graduation-cap text-accent"></i>
-                        Placify
-                    </div>
-                    <p>Bridging the gap between students and recruiters through innovative technology and comprehensive training programs.</p>
-                    <div class="social-links d-flex gap-2 mt-3">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 class="text-accent mb-3">Quick Links</h4>
-                    <div class="footer-links">
-                        <a href="/about">About Us</a>
-                        <a href="/training">Training Programs</a>
-                        <a href="/placement">Placement Services</a>
-                        <a href="/success-stories">Success Stories</a>
-                        <a href="/contact">Contact</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 class="text-accent mb-3">For Students</h4>
-                    <div class="footer-links">
-                        <a href="/resume-builder">Resume Builder</a>
-                        <a href="/interview-practice">Interview Practice</a>
-                        <a href="/job-search">Job Search</a>
-                        <a href="/skill-assessment">Skill Assessment</a>
-                        <a href="/career-guidance">Career Guidance</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 class="text-accent mb-3">For Recruiters</h4>
-                    <div class="footer-links">
-                        <a href="/post-jobs">Post Jobs</a>
-                        <a href="/find-candidates">Find Candidates</a>
-                        <a href="/company-profile">Company Profile</a>
-                        <a href="/virtual-fairs">Virtual Job Fairs</a>
-                        <a href="/analytics">Analytics</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom text-center pt-4" style="border-top: 1px solid #495057;">
-                <p>&copy; 2025 Placify by Team Real. All rights reserved.</p>
-                <div class="footer-legal d-flex justify-center gap-4 mt-2">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                    <a href="/cookies">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-        {% endblock %}
-    </footer>
-
-    <!-- Back to top button -->
-    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()" style="display: none;">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Notification Container -->
-    <div id="notification-container" class="notification-container"></div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <!-- Base JavaScript -->
-    <script>
-        // Global variables
-        window.PlacifyBase = {
-            theme: localStorage.getItem('theme') || 'light',
-            animations: true,
-            debug: false
-        };
-
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 600,
-            easing: 'ease-out',
-            once: true,
-            offset: 100
-        });
-
-        // Theme Management
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            window.PlacifyBase.theme = newTheme;
-            
-            // Dispatch theme change event
-            window.dispatchEvent(new CustomEvent('themeChanged', { 
-                detail: { theme: newTheme } 
-            }));
-        }
-
-        // Apply saved theme on load
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                window.PlacifyBase.theme = savedTheme;
-            }
-        }
-
-        // Mobile Menu Management
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            const isOpen = mobileMenu.style.display === 'block';
-            
-            if (isOpen) {
-                mobileMenu.style.display = 'none';
-                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            } else {
-                mobileMenu.style.display = 'block';
-                menuBtn.innerHTML = '<i class="fas fa-times"></i>';
-            }
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-                mobileMenu.style.display = 'none';
-                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-
-        // Navbar scroll effect
-        function handleNavbarScroll() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(102, 126, 234, 0.98)';
-                header.style.backdropFilter = 'blur(10px)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                header.style.backdropFilter = 'none';
-                header.style.boxShadow = 'none';
-            }
-        }
-
-        // Back to top functionality
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        function handleBackToTop() {
-            const backToTopBtn = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopBtn.style.display = 'block';
-            } else {
-                backToTopBtn.style.display = 'none';
-            }
-        }
-
-        // Notification System
-        function showNotification(message, type = 'info', duration = 5000) {
-            const container = document.getElementById('notification-container');
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type} fade-in`;
-            
-            const icons = {
-                success: 'fas fa-check-circle',
-                error: 'fas fa-exclamation-circle',
-                warning: 'fas fa-exclamation-triangle',
-                info: 'fas fa-info-circle'
-            };
-            
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="${icons[type] || icons.info}"></i>
-                    <span>${message}</span>
-                    <button class="notification-close" onclick="closeNotification(this)">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-            
-            container.appendChild(notification);
-            
-            // Auto remove after duration
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    closeNotification(notification.querySelector('.notification-close'));
-                }
-            }, duration);
-            
-            return notification;
-        }
-
-        function closeNotification(closeBtn) {
-            const notification = closeBtn.closest('.notification');
-            notification.style.animation = 'slideOutRight 0.3s ease-out';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        }
-
-        // Loading Overlay
-        function showLoading(message = 'Loading...') {
-            const overlay = document.getElementById('loading-overlay');
-            overlay.querySelector('p').textContent = message;
-            overlay.style.display = 'flex';
-        }
-
-        function hideLoading() {
-            const overlay = document.getElementById('loading-overlay');
-            overlay.style.display = 'none';
-        }
-
-        // Form Validation Utilities
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        function validatePhone(phone) {
-            const re = /^[\+]?[1-9][\d]{0,15}$/;
-            return re.test(phone.replace(/\s/g, ''));
-        }
-
-        function validateRequired(value) {
-            return value && value.trim().length > 0;
-        }
-
-        // Form field validation on blur
-        function addFormValidation() {
-            document.querySelectorAll('.form-control').forEach(field => {
-                field.addEventListener('blur', function() {
-                    validateField(this);
-                });
-                
-                field.addEventListener('input', function() {
-                    clearFieldError(this);
-                });
-            });
-        }
-
-        function validateField(field) {
-            const value = field.value.trim();
-            const isRequired = field.hasAttribute('required');
-            const type = field.type;
-            let isValid = true;
-            let errorMessage = '';
-            
-            // Required validation
-            if (isRequired && !validateRequired(value)) {
-                isValid = false;
-                errorMessage = 'This field is required';
-            }
-            
-            // Type-specific validation
-            if (value && type === 'email' && !validateEmail(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid email address';
-            }
-            
-            if (value && type === 'tel' && !validatePhone(value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid phone number';
-            }
-            
-            // Display validation result
-            if (isValid) {
-                showFieldSuccess(field);
-            } else {
-                showFieldError(field, errorMessage);
-            }
-            
-            return isValid;
-        }
-
-        function showFieldError(field, message) {
-            clearFieldError(field);
-            field.classList.add('field-error');
-            
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'field-error-message';
-            errorDiv.textContent = message;
-            
-            field.parentNode.appendChild(errorDiv);
-        }
-
-        function showFieldSuccess(field) {
-            clearFieldError(field);
-            field.classList.add('field-success');
-        }
-
-        function clearFieldError(field) {
-            field.classList.remove('field-error', 'field-success');
-            const errorMessage = field.parentNode.querySelector('.field-error-message');
-            if (errorMessage) {
-                errorMessage.remove();
-            }
-        }
-
-        // API Utilities
-        async function apiRequest(url, options = {}) {
-            try {
-                showLoading();
-                
-                const defaultOptions = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                };
-                
-                const response = await fetch(url, { ...defaultOptions, ...options });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                hideLoading();
-                return data;
-            } catch (error) {
-                hideLoading();
-                showNotification(`Error: ${error.message}`, 'error');
-                throw error;
-            }
-        }
-
-        // Local Storage Utilities
-        function saveToStorage(key, data) {
-            try {
-                localStorage.setItem(key, JSON.stringify(data));
-                return true;
-            } catch (error) {
-                console.error('Failed to save to localStorage:', error);
-                return false;
-            }
-        }
-
-        function getFromStorage(key, defaultValue = null) {
-            try {
-                const item = localStorage.getItem(key);
-                return item ? JSON.parse(item) : defaultValue;
-            } catch (error) {
-                console.error('Failed to get from localStorage:', error);
-                return defaultValue;
-            }
-        }
-
-        function removeFromStorage(key) {
-            try {
-                localStorage.removeItem(key);
-                return true;
-            } catch (error) {
-                console.error('Failed to remove from localStorage:', error);
-                return false;
-            }
-        }
-
-        // Animation Utilities
-        function animateElement(element, animationClass, duration = 600) {
-            return new Promise(resolve => {
-                element.classList.add(animationClass);
-                setTimeout(() => {
-                    element.classList.remove(animationClass);
-                    resolve();
-                }, duration);
-            });
-        }
-
-        function fadeIn(element, duration = 300) {
-            element.style.opacity = 0;
-            element.style.display = 'block';
-            
-            let opacity = 0;
-            const timer = setInterval(() => {
-                opacity += 50 / duration;
-                element.style.opacity = opacity;
-                
-                if (opacity >= 1) {
-                    clearInterval(timer);
-                    element.style.opacity = 1;
-                }
-            }, 50);
-        }
-
-        function fadeOut(element, duration = 300) {
-            let opacity = 1;
-            const timer = setInterval(() => {
-                opacity -= 50 / duration;
-                element.style.opacity = opacity;
-                
-                if (opacity <= 0) {
-                    clearInterval(timer);
-                    element.style.display = 'none';
-                    element.style.opacity = 0;
-                }
-            }, 50);
-        }
-
-        // Debounce utility
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Throttle utility
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        // Event Listeners
-        window.addEventListener('scroll', throttle(() => {
-            handleNavbarScroll();
-            handleBackToTop();
-        }, 100));
-
-        window.addEventListener('load', () => {
-            initTheme();
-            addFormValidation();
-            
-            // Remove loading class from body if present
-            document.body.classList.remove('loading');
-            
-            // Initialize any lazy-loaded content
-            if ('IntersectionObserver' in window) {
-                const lazyElements = document.querySelectorAll('[data-lazy]');
-                const lazyObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const element = entry.target;
-                            // Handle lazy loading logic here
-                            lazyObserver.unobserve(element);
-                        }
-                    });
-                });
-                
-                lazyElements.forEach(element => {
-                    lazyObserver.observe(element);
-                });
-            }
-        });
-
-        window.addEventListener('resize', debounce(() => {
-            // Handle responsive changes
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (window.innerWidth > 768) {
-                mobileMenu.style.display = 'none';
-            }
-        }, 250));
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            // Close mobile menu on Escape
-            if (e.key === 'Escape') {
-                const mobileMenu = document.getElementById('mobile-menu');
-                mobileMenu.style.display = 'none';
-            }
-            
-            // Back to top on Ctrl+Home
-            if (e.ctrlKey && e.key === 'Home') {
-                e.preventDefault();
-                scrollToTop();
-            }
-        });
-
-        // Expose utilities globally
-        window.PlacifyUtils = {
-            showNotification,
-            showLoading,
-            hideLoading,
-            validateEmail,
-            validatePhone,
-            validateRequired,
-            apiRequest,
-            saveToStorage,
-            getFromStorage,
-            removeFromStorage,
-            animateElement,
-            fadeIn,
-            fadeOut,
-            debounce,
-            throttle,
-            toggleTheme
-        };
-
-        console.log('Placify Base Template Loaded Successfully! 🚀');
-        console.log('Available utilities:', Object.keys(window.PlacifyUtils));
-    </script>
-
-    {% block extra_js %}{% endblock %}
-
-    <style>
-        /* Additional component styles */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loading-content {
-            text-align: center;
-            color: white;
-        }
-
-        .loading-content p {
-            margin-top: 1rem;
-            color: white;
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Notification styles */
-        .notification-container {
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            z-index: 1001;
-            max-width: 400px;
-        }
-
-        .notification {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 1rem;
-            overflow: hidden;
-            border-left: 4px solid var(--info-color);
-        }
-
-        .notification-success {
-            border-left-color: var(--success-color);
-        }
-
-        .notification-error {
-            border-left-color: var(--danger-color);
-        }
-
-        .notification-warning {
-            border-left-color: var(--warning-color);
-        }
-
-        .notification-content {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
             gap: 0.75rem;
         }
 
-        .notification-content i {
-            color: var(--info-color);
-            font-size: 1.2rem;
-        }
-
-        .notification-success .notification-content i {
-            color: var(--success-color);
-        }
-
-        .notification-error .notification-content i {
-            color: var(--danger-color);
-        }
-
-        .notification-warning .notification-content i {
-            color: var(--warning-color);
-        }
-
-        .notification-content span {
-            flex: 1;
-            color: var(--dark-color);
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            padding: 0.25rem;
-            border-radius: var(--border-radius-sm);
-            transition: var(--transition);
-        }
-
-        .notification-close:hover {
-            background: #f8f9fa;
-            color: var(--dark-color);
-        }
-
-        /* Mobile menu styles */
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background: var(--white);
-            border-top: 1px solid #e9ecef;
-            box-shadow: var(--shadow);
-            z-index: 999;
-        }
-
-        .mobile-menu-content {
-            padding: 1rem;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--dark-color);
-            border-bottom: 1px solid #e9ecef;
-            transition: var(--transition);
-        }
-
-        .mobile-nav-link:hover {
-            background: var(--light-color);
-            color: var(--primary-color);
-        }
-
-        .mobile-nav-actions {
+        .dropdown-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
             display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            border-top: 1px solid #e9ecef;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
+        .dropdown-user-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-user-details p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .dropdown-items {
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
             border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: white;
+        }
+
+        .dropdown-item i {
+            width: 16px;
+            text-align: center;
+            color: rgba(139, 92, 246, 0.8);
+        }
+
+        .dropdown-item.danger {
+            color: rgba(239, 68, 68, 0.8);
+        }
+
+        .dropdown-item.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .dropdown-item.danger i {
+            color: rgba(239, 68, 68, 0.8);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(139, 92, 246, 0.1);
+            margin: 0.5rem 0;
+        }
+
+        /* Mobile Responsive */
+        .mobile-menu {
+            display: none;
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* Social links */
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* Footer links */
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Form validation styles */
-        .field-error {
-            border-color: var(--danger-color) !important;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
-        }
-
-        .field-success {
-            border-color: var(--success-color) !important;
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
-        }
-
-        .field-error-message {
-            color: var(--danger-color);
-            font-size: var(--font-size-sm);
-            margin-top: 0.25rem;
-        }
-
-        /* Animation for slideOutRight */
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive mobile menu */
         @media (max-width: 768px) {
-            .nav-menu {
+            .nav-links {
                 display: none;
             }
             
-            .mobile-menu-btn {
+            .mobile-menu {
                 display: block;
             }
             
-            .nav-actions {
+            .user-info {
                 display: none;
             }
             
-            .notification-container {
-                right: 1rem;
-                left: 1rem;
-                max-width: none;
+            .user-trigger {
+                padding: 0.6rem;
+            }
+            
+            .dropdown-menu {
+                right: -1rem;
+                min-width: 200px;
             }
         }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
+        }
+
+        .footer-section a:hover {
+            color: #8b5cf6;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Container for footer content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
     </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                Placify
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#placement">Placement</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="user-trigger" onclick="toggleUserDropdown()">
+                    <div class="user-avatar">
+                        <!-- First letter of username - you can replace this with actual user data -->
+                        {{ user.username.0|upper|default:"U" }}
+                    </div>
+                    <div class="user-info">
+                        <span class="user-greeting">Hi there,</span>
+                        <span class="user-name">{{ user.username|default:"Username" }}</span>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        <div class="dropdown-user-info">
+                            <div class="dropdown-avatar">
+                                {{ user.username.0|upper|default:"U" }}
+                            </div>
+                            <div class="dropdown-user-details">
+                                <h4>{{ user.get_full_name|default:user.username|default:"User Name" }}</h4>
+                                <p>{{ user.email|default:"user@example.com" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown-items">
+                        <a href="/profile/" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="/dashboard/" class="dropdown-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="/applications/" class="dropdown-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>My Applications</span>
+                        </a>
+                        <a href="/settings/" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        
+                        <div class="dropdown-divider"></div>
+                        
+                        <a href="/help/" class="dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help & Support</span>
+                        </a>
+                        
+                        <div class="dropdown-divider"></div>
+                        
+                        <form method="post" action="/logout/" style="margin: 0; padding: 0;">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item danger">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="flex-grow-1">
+        {% block start %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Placify
+                    </div>
+                    <p>Revolutionizing the connection between talented students and forward-thinking companies through advanced AI technology and comprehensive career development programs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <a href="#">About Placify</a>
+                    <a href="#">Training Programs</a>
+                    <a href="#">Placement Services</a>
+                    <a href="#">Success Stories</a>
+                    <a href="#">AI Technology</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>For Students</h4>
+                    <a href="#">AI Resume Builder</a>
+                    <a href="#">Interview Simulator</a>
+                    <a href="#">Job Discovery</a>
+                    <a href="#">Skill Assessment</a>
+                    <a href="#">Career Roadmap</a>
+                    <a href="#">Mentorship Program</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>For Recruiters</h4>
+                    <a href="#">Talent Discovery</a>
+                    <a href="#">Post Opportunities</a>
+                    <a href="#">Company Analytics</a>
+                    <a href="#">Virtual Events</a>
+                    <a href="#">Recruitment Tools</a>
+                    <a href="#">Partnership Program</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Placify by Team Real. Shaping the future of career development. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const isClickInsideDropdown = dropdown.contains(event.target);
+            
+            if (!isClickInsideDropdown && dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+            }
+        });
+
+        // Close dropdown on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const dropdown = document.getElementById('userDropdown');
+                dropdown.classList.remove('open');
+            }
+        });
+
+        // Handle mobile menu toggle (if needed)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            // Add mobile menu functionality here if needed
+            console.log('Mobile menu clicked');
+        });
+    </script>
 </body>
 </html>
